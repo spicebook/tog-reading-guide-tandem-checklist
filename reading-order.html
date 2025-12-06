@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Throne of Glass Reading Order — SpiceBook</title>
+<style>
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        background: #FED5D3;
+        margin: 0;
+        padding: 0;
+        color: #C2052B;
+    }
+
+    header {
+        padding: 20px;
+        text-align: center;
+        font-size: 24px;
+        font-weight: 700;
+    }
+
+    .tabs {
+        display: flex;
+        border-bottom: 2px solid #C2052B;
+    }
+
+    .tab {
+        flex: 1;
+        text-align: center;
+        padding: 14px;
+        font-size: 18px;
+        cursor: pointer;
+        font-weight: 600;
+    }
+
+    .tab.active {
+        background: #C2052B;
+        color: white;
+    }
+
+    .content-section {
+        display: none;
+        padding: 20px;
+        line-height: 1.5;
+    }
+
+    .content-section.active {
+        display: block;
+    }
+
+    .button {
+        display: block;
+        width: 90%;
+        margin: 30px auto;
+        padding: 16px;
+        background: #C2052B;
+        color: white;
+        text-align: center;
+        font-size: 18px;
+        border-radius: 8px;
+        text-decoration: none;
+    }
+
+    footer {
+        text-align: center;
+        padding: 40px 0 20px;
+        opacity: 0.7;
+    }
+</style>
+</head>
+
+<body>
+
+<header>Throne of Glass Reading Order</header>
+
+<div class="tabs">
+    <div class="tab active" data-target="recommended">Recommended</div>
+    <div class="tab" data-target="chronological">Chronological</div>
+</div>
+
+<div id="recommended" class="content-section active">
+    <p>
+        The Recommended Reading Order places <i>The Assassin’s Blade</i> at the moment where it hits hardest emotionally, 
+        and moves <i>Tower of Dawn</i> to create the smoothest transition from 
+        <i>Empire of Storms</i> into <i>Kingdom of Ash</i>.
+    </p>
+</div>
+
+<div id="chronological" class="content-section">
+    <p>
+        The Chronological Reading Order follows release order exactly. 
+        <i>The Assassin’s Blade</i> appears first as the prequel, and 
+        <i>Tower of Dawn</i> remains after <i>Empire of Storms</i>, 
+        even though the events overlap.
+    </p>
+</div>
+
+<a href="tandem-checklist.html" class="button">Go to Tandem Checklist →</a>
+
+<footer>© SpiceBook</footer>
+
+<script>
+    const tabs = document.querySelectorAll(".tab");
+    const sections = document.querySelectorAll(".content-section");
+
+    tabs.forEach(tab => {
+        tab.addEventListener("click", () => {
+            tabs.forEach(t => t.classList.remove("active"));
+            tab.classList.add("active");
+
+            sections.forEach(sec => sec.classList.remove("active"));
+            document.getElementById(tab.dataset.target).classList.add("active");
+        });
+    });
+</script>
+
+</body>
+</html>
