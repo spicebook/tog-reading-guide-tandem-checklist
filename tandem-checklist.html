@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Tandem Checklist — SpiceBook</title>
+<style>
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        background: #FED5D3;
+        margin: 0;
+        padding: 0 0 40px;
+        color: #C2052B;
+    }
+
+    header {
+        padding: 20px;
+        text-align: center;
+        font-size: 24px;
+        font-weight: 700;
+    }
+
+    .chapter {
+        display: flex;
+        align-items: center;
+        padding: 12px 20px;
+        margin: 10px;
+        border-radius: 10px;
+        border: 2px solid;
+        font-size: 18px;
+    }
+
+    .eos {
+        border-color: #C2052B;
+        color: #C2052B;
+    }
+
+    .tod {
+        border-color: #FD9683;
+        color: #FD9683;
+    }
+
+    input[type="checkbox"] {
+        appearance: none;
+        width: 26px;
+        height: 26px;
+        border-radius: 6px;
+        border: 2px solid currentColor;
+        margin-right: 10px;
+        position: relative;
+        cursor: pointer;
+    }
+
+    input[type="checkbox"]:checked::after {
+        content: "✕";
+        position: absolute;
+        font-size: 24px;
+        top: -6px;
+        left: 2px;
+    }
+
+    footer {
+        text-align: center;
+        padding: 40px 0 20px;
+        opacity: 0.7;
+    }
+</style>
+</head>
+
+<body>
+
+<header>Empire of Storms / Tower of Dawn Tandem Checklist</header>
+
+<div id="list"></div>
+
+<footer>© SpiceBook</footer>
+
+<script>
+const chapters = [
+"Empire of Storms – Nightfall",
+"Empire of Storms – Ch 1",
+"Empire of Storms – Ch 2",
+"Empire of Storms – Ch 3",
+"Empire of Storms – Ch 4",
+"Empire of Storms – Ch 5",
+"Tower of Dawn – Ch 1",
+"Empire of Storms – Ch 6",
+"Empire of Storms – Ch 7",
+"Empire of Storms – Ch 8",
+"Tower of Dawn – Ch 2",
+"Tower of Dawn – Ch 3",
+"Empire of Storms – Ch 9",
+"Empire of Storms – Ch 10",
+"Tower of Dawn – Ch 4",
+"Tower of Dawn – Ch 5",
+"Tower of Dawn – Ch 6",
+"Empire of Storms – Ch 11",
+"Tower of Dawn – Ch 7",
+"Empire of Storms – Ch 12",
+"Empire of Storms – Ch 13",
+"Tower of Dawn – Ch 8",
+"Tower of Dawn – Ch 9",
+"Tower of Dawn – Ch 10",
+"Empire of Storms – Ch 14",
+"Empire of Storms – Ch 15",
+"Empire of Storms – Ch 16",
+"Tower of Dawn – Ch 11",
+"Tower of Dawn – Ch 12",
+"Empire of Storms – Ch 17",
+"Empire of Storms – Ch 18",
+"Tower of Dawn – Ch 13",
+"Tower of Dawn – Ch 14",
+"Tower of Dawn – Ch 15",
+"Tower of Dawn – Ch 16",
+"Empire of Storms – Ch 19",
+"Tower of Dawn – Ch 17",
+"Empire of Storms – Ch 20",
+"Empire of Storms – Ch 21",
+"Empire of Storms – Ch 22",
+"Empire of Storms – Ch 23",
+"Tower of Dawn – Ch 18",
+"Tower of Dawn – Ch 19",
+"Tower of Dawn – Ch 20",
+"Tower of Dawn – Ch 21",
+"Empire of Storms – Ch 24",
+"Empire of Storms – Ch 25",
+"Tower of Dawn – Ch 22",
+"Tower of Dawn – Ch 23",
+"Empire of Storms – Ch 26",
+"Tower of Dawn – Ch 24",
+"Empire of Storms – Ch 27",
+"Empire of Storms – Ch 28",
+"Empire of Storms – Ch 29",
+"Tower of Dawn – Ch 25",
+"Tower of Dawn – Ch 26",
+"Tower of Dawn – Ch 27",
+"Tower of Dawn – Ch 28",
+"Empire of Storms – Ch 30",
+"Tower of Dawn – Ch 29",
+"Tower of Dawn – Ch 30",
+"Tower of Dawn – Ch 31",
+"Empire of Storms – Ch 31",
+"Tower of Dawn – Ch 32",
+"Empire of Storms – Ch 32",
+"Tower of Dawn – Ch 33",
+"Tower of Dawn – Ch 34",
+"Tower of Dawn – Ch 35",
+"Empire of Storms – Ch 33",
+"Empire of Storms – Ch 34",
+"Empire of Storms – Ch 35",
+"Empire of Storms – Ch 36",
+"Empire of Storms – Ch 37",
+"Empire of Storms – Ch 38",
+"Empire of Storms – Ch 39",
+"Empire of Storms – Ch 40",
+"Empire of Storms – Ch 41",
+"Empire of Storms – Ch 42",
+"Empire of Storms – Ch 43",
+"Empire of Storms – Ch 44",
+"Empire of Storms – Ch 45",
+"Empire of Storms – Ch 46",
+"Empire of Storms – Ch 47",
+"Empire of Storms – Ch 48",
+"Empire of Storms – Ch 49",
+"Empire of Storms – Ch 50",
+"Empire of Storms – Ch 51",
+"Tower of Dawn – Ch 36",
+"Tower of Dawn – Ch 37",
+"Empire of Storms – Ch 52",
+"Tower of Dawn – Ch 38",
+"Tower of Dawn – Ch 39",
+"Tower of Dawn – Ch 40",
+"Empire of Storms – Ch 53",
+"Tower of Dawn – Ch 41",
+"Tower of Dawn – Ch 42",
+"Empire of Storms – Ch 54",
+"Empire of Storms – Ch 55",
+"Empire of Storms – Ch 56",
+"Tower of Dawn – Ch 43",
+"Empire of Storms – Ch 57",
+"Empire of Storms – Ch 58",
+"Empire of Storms – Ch 59",
+"Tower of Dawn – Ch 44",
+"Tower of Dawn – Ch 45",
+"Tower of Dawn – Ch 46",
+"Tower of Dawn – Ch 47",
+"Tower of Dawn – Ch 48",
+"Empire of Storms – Ch 60",
+"Empire of Storms – Ch 61",
+"Tower of Dawn – Ch 49",
+"Tower of Dawn – Ch 50",
+"Tower of Dawn – Ch 51",
+"Empire of Storms – Ch 62",
+"Empire of Storms – Ch 63",
+"Tower of Dawn – Ch 52",
+"Tower of Dawn – Ch 53",
+"Empire of Storms – Ch 64",
+"Empire of Storms – Ch 65",
+"Tower of Dawn – Ch 54",
+"Tower of Dawn – Ch 55",
+"Tower of Dawn – Ch 56",
+"Empire of Storms – Ch 66",
+"Empire of Storms – Ch 67",
+"Tower of Dawn – Ch 57",
+"Empire of Storms – Ch 68",
+"Empire of Storms – Ch 69",
+"Empire of Storms – Ch 70",
+"Empire of Storms – Ch 71",
+"Empire of Storms – Ch 72",
+"Empire of Storms – Ch 73",
+"Empire of Storms – Ch 74",
+"Empire of Storms – Ch 75",
+"Tower of Dawn – Ch 58",
+"Tower of Dawn – Ch 59",
+"Tower of Dawn – Ch 60",
+"Tower of Dawn – Ch 61",
+"Tower of Dawn – Ch 62",
+"Tower of Dawn – Ch 63",
+"Tower of Dawn – Ch 64",
+"Tower of Dawn – Ch 65",
+"Tower of Dawn – Ch 66",
+"Tower of Dawn – Ch 67",
+"Tower of Dawn – Ch 68",
+"Tower of Dawn – Fireheart"
+];
+
+const list = document.getElementById("list");
+
+chapters.forEach((chapter, index) => {
+    const wrapper = document.createElement("label");
+    wrapper.className =
+        "chapter " + (chapter.startsWith("Empire") ? "eos" : "tod");
+
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+
+    // Restore saved state
+    if (localStorage.getItem("ch" + index) === "1") {
+        checkbox.checked = true;
+    }
+
+    checkbox.addEventListener("change", () => {
+        localStorage.setItem("ch" + index, checkbox.checked ? "1" : "0");
+    });
+
+    wrapper.appendChild(checkbox);
+    wrapper.appendChild(document.createTextNode(chapter));
+    list.appendChild(wrapper);
+});
+</script>
+
+</body>
+</html>
