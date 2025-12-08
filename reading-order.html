@@ -13,16 +13,17 @@
     --red: #C2052B;
 }
 
+/* BASE */
 body {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     background: #FED5D3;
     margin: 0;
-    padding: 0;
+    padding-bottom: 90px;
     color: var(--red);
 }
 
-/* MAIN PAGE CONTAINER */
-.page-container {
+/* --- NEW WRAPPER FOR MOBILE SPACING --- */
+.page-wrap {
     width: 90%;
     max-width: 600px;
     margin: 0 auto;
@@ -30,50 +31,55 @@ body {
 
 /* HEADER */
 header {
-    font-family: "EB Garamond", serif;
-    font-size: 32px;
-    font-weight: 700;
-    padding: 20px 10px 5px;
+    padding: 20px 10px 0;
     text-align: center;
+    font-family: "EB Garamond", serif;
+    font-size: 30px;
+    font-weight: 700;
     -webkit-text-stroke: 0.5px var(--red);
 }
 
-/* SUBHEAD TITLE */
+/* SUBTITLE 1 */
 .subhead-title {
     font-family: "EB Garamond", serif;
     font-size: 22px;
-    font-weight: 700;
     text-align: center;
-    margin-top: 2px;
+    font-weight: 700;
+    margin-top: 6px;
+    margin-bottom: 4px;
+    -webkit-text-stroke: 0.4px var(--red);
 }
 
 /* DESCRIPTION */
 .subhead-desc {
     text-align: center;
-    padding: 0 15px 12px;
+    max-width: 600px;
+    margin: 0 auto 15px;
+    padding: 0 20px;
     font-size: 15px;
     line-height: 1.4;
-    margin: 0 auto 20px;
-    max-width: 600px;
+    color: var(--red);
 }
 
 /* TABS */
 .tabs {
     display: flex;
-    border-bottom: 2px solid var(--red);
-    width: 100%;
-    margin: 0 auto 15px;
+    margin: 0 auto 10px;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 2px solid var(--red);
 }
 
 .tab {
     flex: 1;
     text-align: center;
-    padding: 14px 6px;
+    padding: 12px;
     font-size: 18px;
     cursor: pointer;
     font-weight: 600;
     font-family: "EB Garamond", serif;
-    border-radius: 6px 6px 0 0;
+    color: var(--red);
+    background: white;
 }
 
 .tab.active {
@@ -84,7 +90,7 @@ header {
 /* CONTENT SECTIONS */
 .content-section {
     display: none;
-    padding: 10px 0 20px;
+    padding: 10px 15px;
     line-height: 1.5;
 }
 
@@ -92,55 +98,60 @@ header {
     display: block;
 }
 
-/* SECTION HEADINGS */
-h2 {
+.content-section h2 {
     font-family: "EB Garamond", serif;
     font-size: 22px;
     font-weight: 700;
-    margin-bottom: 10px;
+    -webkit-text-stroke: 0.4px var(--red);
     text-align: center;
-    -webkit-text-stroke: 0.5px var(--red);
 }
 
-/* BOOK ITEM ROWS */
+.content-section p {
+    text-align: center;
+    margin-bottom: 18px;
+}
+
+/* BOOK ITEMS */
 .book-item {
     display: flex;
     align-items: center;
-    padding: 10px 0;
-    gap: 10px;
-    font-size: 17px;
-}
-
-/* CHECKBOXES */
-input[type="checkbox"] {
-    appearance: none;
-    width: 26px;
-    height: 26px;
-    border-radius: 6px;
-    border: 2px solid var(--red);
+    gap: 12px;
+    padding: 12px 14px;
+    margin: 10px 6px;
+    border-radius: 10px;
     background: white;
-    cursor: pointer;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-input[type="checkbox"]::after {
-    content: "";
-    opacity: 0;
-    font-size: 20px;
-    font-weight: 700;
+    border: 2px solid var(--red);
+    font-size: 16px;
     color: var(--red);
 }
 
-input[type="checkbox"]:checked::after {
-    content: "✕";
-    opacity: 1;
+/* CHECKBOX */
+.book-item input[type="checkbox"] {
+    appearance: none;
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    background: white;
+    border: 2px solid var(--red);
+    display: grid;
+    place-items: center;
+    cursor: pointer;
 }
 
-/* STRIKETHROUGH TEXT ONLY */
-.book-item.completed span {
+.book-item input[type="checkbox"]::after {
+    content: "";
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--red) !important;
+}
+
+.book-item input[type="checkbox"]:checked::after {
+    content: "✕";
+}
+
+/* STRIKETHROUGH ONLY TEXT */
+.book-item.checked span {
     text-decoration: line-through;
     opacity: 0.6;
 }
@@ -149,13 +160,13 @@ input[type="checkbox"]:checked::after {
 .button {
     display: block;
     width: 100%;
-    max-width: 600px;
-    margin: 25px auto;
-    padding: 16px;
+    margin: 20px auto;
+    padding: 14px;
     background: var(--red);
     color: white;
     text-align: center;
     font-size: 18px;
+    font-weight: 600;
     border-radius: 8px;
     text-decoration: none;
 }
@@ -164,80 +175,123 @@ input[type="checkbox"]:checked::after {
 footer {
     text-align: center;
     padding: 40px 0 20px;
+    font-size: 14px;
     color: var(--red);
+}
+
+.logo {
+    width: 150px;
+    display: block;
+    margin: 12px auto 0;
 }
 </style>
 </head>
 
 <body>
 
+<!-- NEW MOBILE SPACING WRAPPER -->
+<div class="page-wrap">
+
 <header>Throne of Glass Reading Order</header>
 
-<div class="page-container">
+<div class="subhead-title">Reading Order Options</div>
 
-    <div class="subhead-title">Reading Order Options</div>
+<div class="subhead-desc">
+Pick the reading order that fits your style. Each option offers a slightly different experience. 
+When your read-through brings you to <i>Empire of Storms</i> and <i>Tower of Dawn</i>, follow the tandem checklist to read their parallel timelines properly.
+</div>
 
-    <div class="subhead-desc">
-        Select the reading style that fits you best.  
-        When your read-through brings you to <i>Empire of Storms</i> and <i>Tower of Dawn</i>,  
-        switch to the Tandem Read Checklist to follow both books in perfect timeline order.
+<!-- TABS -->
+<div class="tabs">
+    <div class="tab active" data-target="recommended">Recommended</div>
+    <div class="tab" data-target="chronological">Chronological</div>
+</div>
+
+<!-- RECOMMENDED -->
+<div id="recommended" class="content-section active">
+
+    <h2>Recommended Reading Order</h2>
+
+    <p>
+        The Recommended Reading order places <i>The Assassin’s Blade</i> at the point where it delivers the strongest emotional punch. It also shifts <i>Tower of Dawn</i> to create a smoother
+        transition between <i>Empire of Storms</i> and <i>Kingdom of Ash.</i>
+    </p>
+
+    <div class="book-item">
+        <input type="checkbox" data-key="rec1"><span>1. Throne of Glass</span>
+    </div>
+    <div class="book-item">
+        <input type="checkbox" data-key="rec2"><span>2. Crown of Midnight</span>
+    </div>
+    <div class="book-item">
+        <input type="checkbox" data-key="rec3"><span>3. Heir of Fire</span>
+    </div>
+    <div class="book-item">
+        <input type="checkbox" data-key="rec4"><span>4. The Assassin's Blade</span>
+    </div>
+    <div class="book-item">
+        <input type="checkbox" data-key="rec5"><span>5. Queen of Shadows</span>
+    </div>
+    <div class="book-item">
+        <input type="checkbox" data-key="rec6"><span>6. Tower of Dawn</span>
+    </div>
+    <div class="book-item">
+        <input type="checkbox" data-key="rec7"><span>7. Empire of Storms</span>
+    </div>
+    <div class="book-item">
+        <input type="checkbox" data-key="rec8"><span>8. Kingdom of Ash</span>
     </div>
 
-    <div class="tabs">
-        <div class="tab active" data-target="recommended">Recommended</div>
-        <div class="tab" data-target="chronological">Chronological</div>
+</div>
+
+<!-- CHRONOLOGICAL -->
+<div id="chronological" class="content-section">
+
+    <h2>Chronological Reading Order</h2>
+
+    <p>
+      The Chronological Reading order follows the original publication sequence, placing <i>The Assassin’s Blade</i> first as the prequel and keeping <i>Tower of Dawn</i> after <i>Empire of
+      Storms</i>, even though both books happen at the same time.
+    </p>
+
+    <div class="book-item">
+        <input type="checkbox" data-key="chrono1"><span>1. The Assassin's Blade</span>
+    </div>
+    <div class="book-item">
+        <input type="checkbox" data-key="chrono2"><span>2. Throne of Glass</span>
+    </div>
+    <div class="book-item">
+        <input type="checkbox" data-key="chrono3"><span>3. Crown of Midnight</span>
+    </div>
+    <div class="book-item">
+        <input type="checkbox" data-key="chrono4"><span>4. Heir of Fire</span>
+    </div>
+    <div class="book-item">
+        <input type="checkbox" data-key="chrono5"><span>5. Queen of Shadows</span>
+    </div>
+    <div class="book-item">
+        <input type="checkbox" data-key="chrono6"><span>6. Empire of Storms</span>
+    </div>
+    <div class="book-item">
+        <input type="checkbox" data-key="chrono7"><span>7. Tower of Dawn</span>
+    </div>
+    <div class="book-item">
+        <input type="checkbox" data-key="chrono8"><span>8. Kingdom of Ash</span>
     </div>
 
-    <!-- RECOMMENDED ORDER -->
-    <div id="recommended" class="content-section active">
+</div>
 
-        <h2>Recommended Reading Order</h2>
+<a href="tandem-checklist.html" class="button">Go to Tandem Checklist →</a>
 
-        <p style="text-align:center;">
-            This order places <i>The Assassin’s Blade</i> at the most emotional moment  
-            and moves <i>Tower of Dawn</i> to create a smoother transition into <i>Kingdom of Ash</i>.
-        </p>
+</div> <!-- END WRAPPER -->
 
-        <div class="book-item"><input type="checkbox" data-key="rec1"><span>1. Throne of Glass</span></div>
-        <div class="book-item"><input type="checkbox" data-key="rec2"><span>2. Crown of Midnight</span></div>
-        <div class="book-item"><input type="checkbox" data-key="rec3"><span>3. Heir of Fire</span></div>
-        <div class="book-item"><input type="checkbox" data-key="rec4"><span>4. The Assassin's Blade</span></div>
-        <div class="book-item"><input type="checkbox" data-key="rec5"><span>5. Queen of Shadows</span></div>
-        <div class="book-item"><input type="checkbox" data-key="rec6"><span>6. Tower of Dawn</span></div>
-        <div class="book-item"><input type="checkbox" data-key="rec7"><span>7. Empire of Storms</span></div>
-        <div class="book-item"><input type="checkbox" data-key="rec8"><span>8. Kingdom of Ash</span></div>
-
-    </div>
-
-    <!-- CHRONOLOGICAL ORDER -->
-    <div id="chronological" class="content-section">
-
-        <h2>Chronological Reading Order</h2>
-
-        <p style="text-align:center;">
-            Follows the original timeline:  
-            <i>The Assassin’s Blade</i> first, and <i>Tower of Dawn</i> after <i>Empire of Storms</i>.
-        </p>
-
-        <div class="book-item"><input type="checkbox" data-key="chrono1"><span>1. The Assassin's Blade</span></div>
-        <div class="book-item"><input type="checkbox" data-key="chrono2"><span>2. Throne of Glass</span></div>
-        <div class="book-item"><input type="checkbox" data-key="chrono3"><span>3. Crown of Midnight</span></div>
-        <div class="book-item"><input type="checkbox" data-key="chrono4"><span>4. Heir of Fire</span></div>
-        <div class="book-item"><input type="checkbox" data-key="chrono5"><span>5. Queen of Shadows</span></div>
-        <div class="book-item"><input type="checkbox" data-key="chrono6"><span>6. Empire of Storms</span></div>
-        <div class="book-item"><input type="checkbox" data-key="chrono7"><span>7. Tower of Dawn</span></div>
-        <div class="book-item"><input type="checkbox" data-key="chrono8"><span>8. Kingdom of Ash</span></div>
-
-    </div>
-
-    <a href="tandem-checklist.html" class="button">Go to Tandem Checklist →</a>
-
-</div><!-- END PAGE CONTAINER -->
-
-<footer>© SpiceBook</footer>
+<footer>
+    Brought to you by
+    <img src="spicebook-logo-clean.svg" class="logo">
+</footer>
 
 <script>
-// Tabs switching
+// Tabs
 const tabs = document.querySelectorAll(".tab");
 const sections = document.querySelectorAll(".content-section");
 
@@ -251,23 +305,26 @@ tabs.forEach(tab => {
     });
 });
 
-// Checkbox saved progress + strike-through
+// Progress saving
 const items = document.querySelectorAll(".book-item");
 
 items.forEach(item => {
-    const checkbox = item.querySelector("input");
+    const checkbox = item.querySelector("input[type=checkbox]");
     const key = checkbox.getAttribute("data-key");
 
     if (localStorage.getItem(key) === "1") {
         checkbox.checked = true;
-        item.classList.add("completed");
+        item.classList.add("checked");
     }
 
     checkbox.addEventListener("change", () => {
-        localStorage.setItem(key, checkbox.checked ? "1" : "0");
-
-        if (checkbox.checked) item.classList.add("completed");
-        else item.classList.remove("completed");
+        if (checkbox.checked) {
+            localStorage.setItem(key, "1");
+            item.classList.add("checked");
+        } else {
+            localStorage.setItem(key, "0");
+            item.classList.remove("checked");
+        }
     });
 });
 </script>
