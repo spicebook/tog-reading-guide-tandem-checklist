@@ -22,8 +22,16 @@ body {
     color: #C2052B;
 }
 
+/* NEW centered max-width container */
+#container {
+    max-width: 650px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* HEADER */
 header {
-    padding: 20px 10px;
+    padding: 20px 10px 0;
     text-align: center;
     font-family: "EB Garamond", serif;
     font-size: 28px;
@@ -31,9 +39,10 @@ header {
     -webkit-text-stroke: 0.5px #C2052B;
 }
 
+/* PROGRESS BAR */
 #progressContainer {
-    width: 90%;
-    margin: 0 auto 15px;
+    width: 100%;
+    margin: 12px auto 15px;
 }
 
 #progressBarBackground {
@@ -58,21 +67,22 @@ header {
     color: #C2052B;
 }
 
+/* LIST */
 #list {
-    padding: 10px;
+    padding: 10px 0 20px;
 }
 
+/* CHAPTER ROW */
 .chapter {
     display: flex;
     align-items: center;
     gap: 12px;
     padding: 12px 14px;
-    margin: 10px 6px;
+    margin: 10px 0;
     border-radius: 10px;
-    background: white; 
+    background: white;
     border: 2px solid;
     font-size: 16px;
-    color: inherit;
 }
 
 .chapter.eos {
@@ -94,7 +104,6 @@ input[type="checkbox"] {
     border-radius: 6px;
     background: white;
     border: 2px solid currentColor;
-    color: inherit !important;
     display: grid;
     place-items: center;
     cursor: pointer;
@@ -105,18 +114,17 @@ input[type="checkbox"]::after {
     font-size: 20px;
     font-weight: 700;
     line-height: 1;
-    color: inherit !important;
 }
 
 input[type="checkbox"]:checked::after {
     content: "✕";
 }
 
-/* CLEAR PROGRESS BUTTON */
+/* CLEAR BUTTON (moved up) */
 #clearButton {
     display: block;
-    width: 90%;
-    margin: 20px auto;
+    width: 100%;
+    margin: 20px auto 10px;
     padding: 12px;
     background: #C2052B;
     color: white;
@@ -142,17 +150,19 @@ input[type="checkbox"]:checked::after {
     z-index: 999;
 }
 
+/* FOOTER */
 footer {
     text-align: center;
     padding: 40px 0 20px;
     font-size: 14px;
     color: #C2052B;
 }
-
 </style>
 </head>
 
 <body>
+
+<div id="container">
 
 <header>Empire of Storms / Tower of Dawn Tandem Checklist</header>
 
@@ -163,16 +173,17 @@ footer {
     <div id="progressText">0% Complete</div>
 </div>
 
+<button id="clearButton">Clear All Progress</button>
+
 <div id="list"></div>
 
-<button id="clearButton">Clear All Progress</button>
+</div><!-- end container -->
 
 <a id="backButton" href="reading-order.html">← Back to Reading Order</a>
 
 <footer>
-    © SpiceBook
+    © SpiceBook  
     <div style="margin-top:12px;">
-        <!-- PLACE YOUR SVG FILE HERE (we'll fix it next) -->
         <img src="spicebook-logo.svg" style="width:85px; display:block; margin:0 auto;">
     </div>
 </footer>
