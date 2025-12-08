@@ -89,32 +89,34 @@
         font-size: 18px;
     }
 
-/* PERFECT centered checkbox + adaptive color */
+/* CENTERED X + WHITE BOX + C2052B COLOR */
 input[type="checkbox"] {
     appearance: none;
     width: 26px;
     height: 26px;
     border-radius: 6px;
-    border: 2px solid currentColor;
+    border: 2px solid #C2052B;   /* Always red */
     margin-right: 10px;
     cursor: pointer;
-    background: transparent;
 
+    background: #FFFFFF;         /* White box background */
+    
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-/* X stays centered because Flexbox handles alignment */
+/* X centered, inherits red color */
 input[type="checkbox"]::after {
     content: "";
-    opacity: 0; /* hidden when unchecked */
+    opacity: 0;
     font-size: 20px;
     font-weight: 700;
     line-height: 1;
-    color: currentColor;
+    color: #C2052B;              /* Always red */
 }
 
+/* When checked, show X */
 input[type="checkbox"]:checked::after {
     content: "✕";
     opacity: 1;
