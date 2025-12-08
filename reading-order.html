@@ -22,7 +22,7 @@ body {
     color: var(--red);
 }
 
-/* --- NEW WRAPPER FOR MOBILE SPACING --- */
+/* WRAPPER (matches Tandem page spacing) */
 .page-wrap {
     width: 90%;
     max-width: 600px;
@@ -39,7 +39,7 @@ header {
     -webkit-text-stroke: 0.5px var(--red);
 }
 
-/* SUBTITLE 1 */
+/* SUBTITLE 1 — "Reading Order Options" */
 .subhead-title {
     font-family: "EB Garamond", serif;
     font-size: 22px;
@@ -55,19 +55,20 @@ header {
     text-align: center;
     max-width: 600px;
     margin: 0 auto 15px;
-    padding: 0 20px;
+    padding: 0 15px;
     font-size: 15px;
     line-height: 1.4;
     color: var(--red);
 }
 
-/* TABS */
+/* TABS (keeps same look as tandem list cards) */
 .tabs {
     display: flex;
     margin: 0 auto 10px;
     border-radius: 10px;
     overflow: hidden;
     border: 2px solid var(--red);
+    background: white;
 }
 
 .tab {
@@ -90,7 +91,7 @@ header {
 /* CONTENT SECTIONS */
 .content-section {
     display: none;
-    padding: 10px 15px;
+    padding: 10px 0 0;
     line-height: 1.5;
 }
 
@@ -104,14 +105,16 @@ header {
     font-weight: 700;
     -webkit-text-stroke: 0.4px var(--red);
     text-align: center;
+    margin: 8px 0 10px;
 }
 
 .content-section p {
     text-align: center;
-    margin-bottom: 18px;
+    margin: 0 0 18px;
+    padding: 0 10px;
 }
 
-/* BOOK ITEMS */
+/* BOOK LIST CARDS (styled like Tandem chapter cards) */
 .book-item {
     display: flex;
     align-items: center;
@@ -150,16 +153,17 @@ header {
     content: "✕";
 }
 
-/* STRIKETHROUGH ONLY TEXT */
+/* STRIKE-THROUGH ONLY TEXT (text inside the card) */
 .book-item.checked span {
     text-decoration: line-through;
     opacity: 0.6;
 }
 
-/* BUTTON */
+/* GO TO TANDEM BUTTON - matches Tandem layout exactly */
 .button {
     display: block;
-    width: 100%;
+    width: 90%;
+    max-width: 600px;
     margin: 20px auto;
     padding: 14px;
     background: var(--red);
@@ -189,32 +193,30 @@ footer {
 
 <body>
 
-<!-- NEW MOBILE SPACING WRAPPER -->
-<div class="page-wrap">
+<div class="page-wrap"><!-- wrapper to align with Tandem layout -->
 
 <header>Throne of Glass Reading Order</header>
 
 <div class="subhead-title">Reading Order Options</div>
 
 <div class="subhead-desc">
-Pick the reading order that fits your style. Each option offers a slightly different experience. 
-When your read-through brings you to <i>Empire of Storms</i> and <i>Tower of Dawn</i>, follow the tandem checklist to read their parallel timelines properly.
+Pick the reading order that fits your style. Each option offers a slightly different experience.
+When your read-through brings you to <i>Empire of Storms</i> and <i>Tower of Dawn</i>, use the Tandem Checklist to follow both books' parallel timelines correctly.
 </div>
 
 <!-- TABS -->
-<div class="tabs">
-    <div class="tab active" data-target="recommended">Recommended</div>
-    <div class="tab" data-target="chronological">Chronological</div>
+<div class="tabs" role="tablist">
+    <div class="tab active" data-target="recommended" role="tab" aria-selected="true">Recommended</div>
+    <div class="tab" data-target="chronological" role="tab">Chronological</div>
 </div>
 
-<!-- RECOMMENDED -->
+<!-- RECOMMENDED ORDER -->
 <div id="recommended" class="content-section active">
 
     <h2>Recommended Reading Order</h2>
 
     <p>
-        The Recommended Reading order places <i>The Assassin’s Blade</i> at the point where it delivers the strongest emotional punch. It also shifts <i>Tower of Dawn</i> to create a smoother
-        transition between <i>Empire of Storms</i> and <i>Kingdom of Ash.</i>
+        The Recommended order places <i>The Assassin’s Blade</i> where it delivers the strongest emotional punch and slightly rearranges <i>Tower of Dawn</i> to create a smoother bridge between <i>Empire of Storms</i> and <i>Kingdom of Ash</i>.
     </p>
 
     <div class="book-item">
@@ -250,8 +252,7 @@ When your read-through brings you to <i>Empire of Storms</i> and <i>Tower of Daw
     <h2>Chronological Reading Order</h2>
 
     <p>
-      The Chronological Reading order follows the original publication sequence, placing <i>The Assassin’s Blade</i> first as the prequel and keeping <i>Tower of Dawn</i> after <i>Empire of
-      Storms</i>, even though both books happen at the same time.
+        The Chronological order follows the publication/chronological sequence, placing <i>The Assassin’s Blade</i> first as a prequel and keeping <i>Tower of Dawn</i> after <i>Empire of Storms</i> even though they happen concurrently.
     </p>
 
     <div class="book-item">
@@ -281,13 +282,14 @@ When your read-through brings you to <i>Empire of Storms</i> and <i>Tower of Daw
 
 </div>
 
+<!-- button matches Tandem layout spacing -->
 <a href="tandem-checklist.html" class="button">Go to Tandem Checklist →</a>
 
-</div> <!-- END WRAPPER -->
+</div> <!-- end .page-wrap -->
 
 <footer>
     Brought to you by
-    <img src="spicebook-logo-clean.svg" class="logo">
+    <img src="spicebook-logo-clean.svg" class="logo" alt="SpiceBook logo">
 </footer>
 
 <script>
@@ -301,22 +303,25 @@ tabs.forEach(tab => {
         tab.classList.add("active");
 
         sections.forEach(sec => sec.classList.remove("active"));
-        document.getElementById(tab.dataset.target).classList.add("active");
+        const target = document.getElementById(tab.dataset.target);
+        if (target) target.classList.add("active");
     });
 });
 
-// Progress saving
+// Save checkbox progress + text strike-through (keeps behavior you already had)
 const items = document.querySelectorAll(".book-item");
 
 items.forEach(item => {
     const checkbox = item.querySelector("input[type=checkbox]");
     const key = checkbox.getAttribute("data-key");
 
+    // Load saved state
     if (localStorage.getItem(key) === "1") {
         checkbox.checked = true;
         item.classList.add("checked");
     }
 
+    // Update on click
     checkbox.addEventListener("change", () => {
         if (checkbox.checked) {
             localStorage.setItem(key, "1");
