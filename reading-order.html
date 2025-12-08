@@ -94,12 +94,17 @@ header {
     display: block;
 }
 
-h2 {
+.content-section h2 {
     font-family: "EB Garamond", serif;
     font-size: 22px;
     font-weight: 700;
-    margin-bottom: 12px;
     -webkit-text-stroke: 0.4px var(--red);
+    text-align: center;              /* NEW */
+}
+
+.content-section p {
+    text-align: center;              /* NEW */
+    margin-bottom: 18px;
 }
 
 /* BOOK LIST CARDS */
@@ -116,7 +121,7 @@ h2 {
     color: var(--red);
 }
 
-/* CHECKBOX — RED X FIXED */
+/* CHECKBOX */
 .book-item input[type="checkbox"] {
     appearance: none;
     width: 28px;
@@ -139,6 +144,12 @@ h2 {
 
 .book-item input[type="checkbox"]:checked::after {
     content: "✕";
+}
+
+/* STRIKE ONLY TEXT */
+.book-item.checked span {            /* NEW */
+    text-decoration: line-through;
+    opacity: 0.6;
 }
 
 /* BUTTON */
@@ -202,14 +213,30 @@ footer {
         <i>Kingdom of Ash</i>.
     </p>
 
-    <div class="book-item"><input type="checkbox" data-key="rec1">1. Throne of Glass</div>
-    <div class="book-item"><input type="checkbox" data-key="rec2">2. Crown of Midnight</div>
-    <div class="book-item"><input type="checkbox" data-key="rec3">3. Heir of Fire</div>
-    <div class="book-item"><input type="checkbox" data-key="rec4">4. The Assassin's Blade</div>
-    <div class="book-item"><input type="checkbox" data-key="rec5">5. Queen of Shadows</div>
-    <div class="book-item"><input type="checkbox" data-key="rec6">6. Tower of Dawn</div>
-    <div class="book-item"><input type="checkbox" data-key="rec7">7. Empire of Storms</div>
-    <div class="book-item"><input type="checkbox" data-key="rec8">8. Kingdom of Ash</div>
+    <div class="book-item">
+        <input type="checkbox" data-key="rec1"><span>1. Throne of Glass</span>
+    </div>
+    <div class="book-item">
+        <input type="checkbox" data-key="rec2"><span>2. Crown of Midnight</span>
+    </div>
+    <div class="book-item">
+        <input type="checkbox" data-key="rec3"><span>3. Heir of Fire</span>
+    </div>
+    <div class="book-item">
+        <input type="checkbox" data-key="rec4"><span>4. The Assassin's Blade</span>
+    </div>
+    <div class="book-item">
+        <input type="checkbox" data-key="rec5"><span>5. Queen of Shadows</span>
+    </div>
+    <div class="book-item">
+        <input type="checkbox" data-key="rec6"><span>6. Tower of Dawn</span>
+    </div>
+    <div class="book-item">
+        <input type="checkbox" data-key="rec7"><span>7. Empire of Storms</span>
+    </div>
+    <div class="book-item">
+        <input type="checkbox" data-key="rec8"><span>8. Kingdom of Ash</span>
+    </div>
 
 </div>
 
@@ -223,14 +250,30 @@ footer {
         <i>Tower of Dawn</i> after <i>Empire of Storms</i>.
     </p>
 
-    <div class="book-item"><input type="checkbox" data-key="chrono1">1. The Assassin's Blade</div>
-    <div class="book-item"><input type="checkbox" data-key="chrono2">2. Throne of Glass</div>
-    <div class="book-item"><input type="checkbox" data-key="chrono3">3. Crown of Midnight</div>
-    <div class="book-item"><input type="checkbox" data-key="chrono4">4. Heir of Fire</div>
-    <div class="book-item"><input type="checkbox" data-key="chrono5">5. Queen of Shadows</div>
-    <div class="book-item"><input type="checkbox" data-key="chrono6">6. Empire of Storms</div>
-    <div class="book-item"><input type="checkbox" data-key="chrono7">7. Tower of Dawn</div>
-    <div class="book-item"><input type="checkbox" data-key="chrono8">8. Kingdom of Ash</div>
+    <div class="book-item">
+        <input type="checkbox" data-key="chrono1"><span>1. The Assassin's Blade</span>
+    </div>
+    <div class="book-item">
+        <input type="checkbox" data-key="chrono2"><span>2. Throne of Glass</span>
+    </div>
+    <div class="book-item">
+        <input type="checkbox" data-key="chrono3"><span>3. Crown of Midnight</span>
+    </div>
+    <div class="book-item">
+        <input type="checkbox" data-key="chrono4"><span>4. Heir of Fire</span>
+    </div>
+    <div class="book-item">
+        <input type="checkbox" data-key="chrono5"><span>5. Queen of Shadows</span>
+    </div>
+    <div class="book-item">
+        <input type="checkbox" data-key="chrono6"><span>6. Empire of Storms</span>
+    </div>
+    <div class="book-item">
+        <input type="checkbox" data-key="chrono7"><span>7. Tower of Dawn</span>
+    </div>
+    <div class="book-item">
+        <input type="checkbox" data-key="chrono8"><span>8. Kingdom of Ash</span>
+    </div>
 
 </div>
 
@@ -256,15 +299,29 @@ tabs.forEach(tab => {
     });
 });
 
-// Save checkbox progress
-const boxes = document.querySelectorAll("input[type=checkbox]");
+// Save checkbox progress + text strike-through
+const items = document.querySelectorAll(".book-item");
 
-boxes.forEach(box => {
-    const key = box.getAttribute("data-key");
-    if (localStorage.getItem(key) === "1") box.checked = true;
+items.forEach(item => {
+    const checkbox = item.querySelector("input[type=checkbox]");
+    const text = item.querySelector("span");
+    const key = checkbox.getAttribute("data-key");
 
-    box.addEventListener("change", () => {
-        localStorage.setItem(key, box.checked ? "1" : "0");
+    // Load saved state
+    if (localStorage.getItem(key) === "1") {
+        checkbox.checked = true;
+        item.classList.add("checked");
+    }
+
+    // Update on click
+    checkbox.addEventListener("change", () => {
+        if (checkbox.checked) {
+            localStorage.setItem(key, "1");
+            item.classList.add("checked");
+        } else {
+            localStorage.setItem(key, "0");
+            item.classList.remove("checked");
+        }
     });
 });
 </script>
