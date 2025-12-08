@@ -9,234 +9,195 @@
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;600;700&display=swap" rel="stylesheet">
 
 <style>
-  :root{
-    --bg: #FED5D3;
-    --accent-eos: #C2052B;
-    --accent-tod: #FD9683;
-    --white: #ffffff;
-    --text: #222222;
-  }
+    body {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        background: #FED5D3;
+        margin: 0;
+        padding: 0;
+        color: #C2052B;
+    }
 
-  html,body{
-    height:100%;
-    margin:0;
-    background:var(--bg);
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    color:var(--text);
-  }
+    header {
+        padding: 25px 10px 10px;
+        text-align: center;
+        font-family: "EB Garamond", serif;
+        font-size: 28px;
+        font-weight: 700;
+        -webkit-text-stroke: 0.5px #C2052B;
+        text-stroke: 0.5px #C2052B;
+    }
 
-  header{
-    padding:20px 12px 6px;
-    text-align:center;
-    font-family:"EB Garamond", serif;
-    font-size:28px;
-    font-weight:700;
-    -webkit-text-stroke:0.5px var(--accent-eos);
-    text-stroke:0.5px var(--accent-eos);
-    color: var(--accent-eos);
-  }
+    /* Description under title */
+    #description {
+        text-align: center;
+        max-width: 330px;
+        margin: 0 auto 20px;
+        font-size: 15px;
+        line-height: 1.4;
+        color: #C2052B;
+    }
 
-  .subtitle{
-    text-align:center;
-    font-size:15px;
-    max-width:88%;
-    margin:0 auto 16px;
-    line-height:1.45;
-    padding:0 8px;
-    color: var(--accent-eos); /* subtitle matches header accent */
-  }
+    /* SVG divider */
+    .divider {
+        width: 140px;
+        margin: 10px auto 25px;
+        display: block;
+    }
 
-  /* Progress area */
-  .progress-wrap{
-    width:92%;
-    margin: 8px auto 12px;
-    text-align:center;
-  }
+    /* Progress container */
+    #progressContainer {
+        width: 90%;
+        margin: 0 auto 20px;
+        background: rgba(255,255,255,0.5);
+        border-radius: 10px;
+        height: 12px;
+        position: relative;
+    }
 
-  #progress-text{
-    font-weight:700;
-    margin-bottom:8px;
-    font-size:14px;
-    color: rgba(0,0,0,0.8);
-  }
+    #progressBar {
+        height: 100%;
+        width: 0%;
+        background: #C2052B;
+        border-radius: 10px;
+        transition: width 0.25s ease;
+    }
 
-  #progress-container{
-    height:18px;
-    width:100%;
-    border-radius:10px;
-    background:var(--white);
-    border:2px solid var(--accent-eos);
-    overflow:hidden;
-  }
+    #progressPercent {
+        text-align: center;
+        font-size: 14px;
+        margin-bottom: 15px;
+        font-weight: 600;
+        color: #C2052B;
+    }
 
-  #progress-bar{
-    height:100%;
-    width:0%;
-    background:var(--accent-eos);
-    transition: width 300ms ease;
-  }
+    /* chapter list */
+    #list {
+        padding: 10px;
+    }
 
-  /* Clear button */
-  #clearButton{
-    display:block;
-    margin:12px auto;
-    padding:10px 14px;
-    background:var(--accent-eos);
-    color:white;
-    border:none;
-    border-radius:10px;
-    font-weight:700;
-    font-size:15px;
-    cursor:pointer;
-    box-shadow:0 4px 10px rgba(0,0,0,0.12);
-  }
-  #clearButton:hover{ opacity:0.92 }
+    .chapter {
+        display: flex;
+        align-items: center;
+        padding: 12px 14px;
+        margin: 12px 8px;
+        border-radius: 10px;
+        border: 2px solid;
+        font-size: 17px;
+        background: transparent; /* FIXED — not white */
+    }
 
-  /* List */
-  #list{ padding:8px; padding-bottom:120px } /* bottom padding so floating button doesn't overlap items */
+    /* EoS red */
+    .eos {
+        border-color: #C2052B;
+        color: #C2052B;
+    }
 
-  .chapter{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    padding:12px 14px;
-    margin:10px 8px;
-    border-radius:10px;
-    border:2px solid #eee;
-    background:var(--white); /* solid white card */
-    font-size:16px;
-    line-height:1.2;
-    color: var(--text);
-    box-shadow: 0 2px 6px rgba(0,0,0,0.04);
-  }
+    /* ToD peach */
+    .tod {
+        border-color: #FD9683;
+        color: #FD9683;
+    }
 
-  /* Border color only on wrapper; keep text color controlled separately */
-  .chapter.eos{ border-color: var(--accent-eos); }
-  .chapter.tod{ border-color: var(--accent-tod); }
+    /* CHECKBOXES */
+    input[type="checkbox"] {
+        appearance: none;
+        width: 26px;
+        height: 26px;
+        border-radius: 6px;
+        border: 2px solid currentColor;
+        margin-right: 12px;
+        cursor: pointer;
+        background: white; /* FIXED — checkbox only */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+    }
 
-  /* Checkbox - white background; border/X color explicitly set per wrapper */
-  input[type="checkbox"]{
-    appearance:none;
-    -webkit-appearance:none;
-    width:28px;
-    height:28px;
-    border-radius:6px;
-    margin:0;
-    padding:0;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    cursor:pointer;
-    background:var(--white); /* always white */
-    box-sizing: border-box;
-    flex: 0 0 28px;
-    border: 2px solid #999; /* fallback */
-  }
+    input[type="checkbox"]:checked::after {
+        content: "✕";
+        font-size: 20px;
+        font-weight: 600;
+        color: currentColor;
+        position: absolute;
+        top: 3px;
+        left: 0;
+        right: 0;
+        text-align: center; /* FIXED — centered */
+    }
 
-  /* Default invisible X */
-  input[type="checkbox"]::after{
-    content:"";
-    opacity:0;
-    font-size:18px;
-    font-weight:700;
-    line-height:1;
-    color: currentColor;
-    transition: opacity 120ms ease;
-  }
+    /* CLEAR PROGRESS BUTTON */
+    #clearBtn {
+        display: block;
+        margin: 20px auto 40px;
+        padding: 10px 20px;
+        background: #C2052B;
+        color: white;
+        border-radius: 25px;
+        font-size: 15px;
+        font-weight: 600;
+        text-align: center;
+        width: fit-content;
+        cursor: pointer;
+    }
 
-  input[type="checkbox"]:checked::after{
-    content:"✕";
-    opacity:1;
-  }
+    /* FLOATING BACK BUTTON */
+    #backButton {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: #C2052B;
+        color: white;
+        padding: 12px 18px;
+        border-radius: 30px;
+        font-size: 15px;
+        font-weight: 600;
+        text-decoration: none;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+        z-index: 999;
+    }
 
-  /* Crucial: explicitly set checkbox border & X color for each wrapper to avoid inheriting wrong color */
-  .chapter.eos input[type="checkbox"]{
-    border-color: var(--accent-eos);
-    color: var(--accent-eos);
-  }
-  .chapter.eos input[type="checkbox"]::after{
-    color: var(--accent-eos);
-  }
+    footer {
+        text-align: center;
+        padding: 30px 0;
+        font-size: 14px;
+        color: #C2052B;
+        opacity: 0.8;
+    }
 
-  .chapter.tod input[type="checkbox"]{
-    border-color: var(--accent-tod);
-    color: var(--accent-tod);
-  }
-  .chapter.tod input[type="checkbox"]::after{
-    color: var(--accent-tod);
-  }
-
-  /* TEXT COLOR: set chapter label color per book (what you wanted) */
-  .chapter.eos .chapter-text{ color: var(--accent-eos); font-weight:600; }
-  .chapter.tod .chapter-text{ color: var(--accent-tod); font-weight:600; }
-
-  /* label text styling (general) */
-  .chapter-text{
-    flex:1;
-    font-size:16px;
-    user-select: none;
-  }
-
-  /* floating back button */
-  #backButton{
-    position: fixed;
-    bottom: 18px;
-    right: 16px;
-    background: var(--accent-eos);
-    color:white;
-    padding: 10px 14px;
-    border-radius: 28px;
-    font-weight:700;
-    text-decoration:none;
-    z-index: 999;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.18);
-  }
-
-  #backButton:active{ transform: translateY(1px) }
-
-  footer{
-    text-align:center;
-    padding:26px 6px 36px;
-    color: rgba(0,0,0,0.6);
-    font-size:13px;
-  }
-
-  /* small responsive tweak */
-  @media (max-width:420px){
-    header{font-size:24px}
-    input[type="checkbox"]{ width:26px;height:26px }
-    .chapter{ font-size:15px }
-  }
 </style>
 </head>
+
 <body>
 
 <header>Empire of Storms / Tower of Dawn Tandem Checklist</header>
 
-<div class="subtitle">
-  Use this checklist when your reading order brings you to <em>Empire of Storms</em> and <em>Tower of Dawn</em>.
-  These two books happen at the same time, so alternating the chapters lets you read the timeline in proper chronological order.
+<div id="description">
+Use this checklist when your reading order brings you to Empire of Storms and Tower of Dawn. These two books happen at the same time, so alternating the chapters lets you read the timeline in proper chronological order.
 </div>
 
-<!-- progress -->
-<div class="progress-wrap" aria-hidden="false">
-  <div id="progress-text">0% completed</div>
-  <div id="progress-container"><div id="progress-bar"></div></div>
+<!-- SVG DIVIDER -->
+<svg class="divider" viewBox="0 0 200 40" xmlns="http://www.w3.org/2000/svg">
+  <path d="M10 20h60M130 20h60" stroke="#C2052B" stroke-width="2" stroke-linecap="round"/>
+  <circle cx="100" cy="20" r="6" stroke="#C2052B" stroke-width="2" fill="none"/>
+  <circle cx="100" cy="20" r="2" fill="#C2052B"/>
+</svg>
+
+<!-- PROGRESS BAR -->
+<div id="progressPercent">0% complete</div>
+<div id="progressContainer">
+    <div id="progressBar"></div>
 </div>
 
-<!-- clear -->
-<button id="clearButton" aria-label="Clear all progress">Clear All Progress</button>
+<div id="list"></div>
 
-<!-- checklist -->
-<div id="list" role="list" aria-label="Tandem checklist"></div>
+<div id="clearBtn">Clear All Progress</div>
 
-<!-- floating back -->
 <a id="backButton" href="reading-order.html">← Back to Reading Order</a>
 
 <footer>© SpiceBook</footer>
 
 <script>
-/* Chapter data */
 const chapters = [
 "Empire of Storms – Nightfall",
 "Empire of Storms – Ch 1",
@@ -385,76 +346,52 @@ const chapters = [
 "Tower of Dawn – Fireheart"
 ];
 
-/* localStorage key prefix */
-const KEY_PREFIX = 'spicebook_tandem_ch_';
+const list = document.getElementById("list");
+const progressBar = document.getElementById("progressBar");
+const progressPercent = document.getElementById("progressPercent");
+const clearBtn = document.getElementById("clearBtn");
 
-const listEl = document.getElementById('list');
-const progressBar = document.getElementById('progress-bar');
-const progressText = document.getElementById('progress-text');
-const clearButton = document.getElementById('clearButton');
-
-const total = chapters.length;
-
-function isToD(label){ return label.toLowerCase().startsWith('tower of dawn'); }
-function isEoS(label){ return label.toLowerCase().startsWith('empire of storms'); }
-
-function loadProgressIndex(i){
-  return localStorage.getItem(KEY_PREFIX + i) === '1';
-}
-function saveProgressIndex(i, val){
-  try{ localStorage.setItem(KEY_PREFIX + i, val ? '1' : '0'); }catch(e){}
+function updateProgress() {
+    const total = chapters.length;
+    const checked = Array.from(document.querySelectorAll('input[type="checkbox"]')).filter(cb => cb.checked).length;
+    const percent = Math.round((checked / total) * 100);
+    progressBar.style.width = percent + "%";
+    progressPercent.textContent = percent + "% complete";
 }
 
-function renderList(){
-  listEl.innerHTML = '';
-  chapters.forEach((label, i) => {
-    const wrapper = document.createElement('label');
-    wrapper.className = 'chapter ' + (isEoS(label) ? 'eos' : 'tod');
+chapters.forEach((chapter, index) => {
+    const wrapper = document.createElement("label");
+    wrapper.className =
+        "chapter " + (chapter.startsWith("Empire") ? "eos" : "tod");
 
-    const cb = document.createElement('input');
-    cb.type = 'checkbox';
-    cb.setAttribute('aria-label', label);
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
 
-    // restore state
-    if(loadProgressIndex(i)) cb.checked = true;
+    // Restore previous state
+    if (localStorage.getItem("ch" + index) === "1") {
+        checkbox.checked = true;
+    }
 
-    cb.addEventListener('change', () => {
-      saveProgressIndex(i, cb.checked);
-      updateProgress();
+    checkbox.addEventListener("change", () => {
+        localStorage.setItem("ch" + index, checkbox.checked ? "1" : "0");
+        updateProgress();
     });
 
-    const text = document.createElement('div');
-    text.className = 'chapter-text';
-    text.textContent = label;
-
-    wrapper.appendChild(cb);
-    wrapper.appendChild(text);
-    listEl.appendChild(wrapper);
-  });
-}
-
-function updateProgress(){
-  let checked = 0;
-  for(let i=0;i<total;i++){
-    if(loadProgressIndex(i)) checked++;
-  }
-  const pct = Math.round((checked/total)*100);
-  const bar = document.getElementById('progress-bar');
-  if(bar) bar.style.width = pct + '%';
-  progressText.textContent = pct + '% completed';
-}
-
-/* clear all */
-clearButton.addEventListener('click', ()=>{
-  if(!confirm('Clear all saved progress? This cannot be undone.')) return;
-  for(let i=0;i<total;i++) localStorage.removeItem(KEY_PREFIX + i);
-  renderList();
-  updateProgress();
+    wrapper.appendChild(checkbox);
+    wrapper.appendChild(document.createTextNode(chapter));
+    list.appendChild(wrapper);
 });
 
-/* init */
-renderList();
 updateProgress();
+
+clearBtn.addEventListener("click", () => {
+    chapters.forEach((_, index) => {
+        localStorage.removeItem("ch" + index);
+    });
+    document.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
+    updateProgress();
+});
 </script>
+
 </body>
 </html>
