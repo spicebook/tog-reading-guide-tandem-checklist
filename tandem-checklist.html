@@ -14,6 +14,7 @@
     --accent-eos: #C2052B;
     --accent-tod: #FD9683;
     --white: #ffffff;
+    --text: #222222;
   }
 
   html,body{
@@ -21,7 +22,7 @@
     margin:0;
     background:var(--bg);
     font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    color:var(--accent-eos);
+    color:var(--text);
   }
 
   header{
@@ -32,6 +33,7 @@
     font-weight:700;
     -webkit-text-stroke:0.5px var(--accent-eos);
     text-stroke:0.5px var(--accent-eos);
+    color: var(--accent-eos);
   }
 
   .subtitle{
@@ -41,6 +43,7 @@
     margin:0 auto 16px;
     line-height:1.45;
     padding:0 8px;
+    color: rgba(0,0,0,0.85);
   }
 
   /* Progress area */
@@ -99,18 +102,19 @@
     padding:12px 14px;
     margin:10px 8px;
     border-radius:10px;
-    border:2px solid #ddd;
+    border:2px solid #eee;
     background:var(--white); /* solid white card */
     font-size:16px;
     line-height:1.2;
-    color: #222;
+    color: var(--text);
     box-shadow: 0 2px 6px rgba(0,0,0,0.04);
   }
 
+  /* ONLY border color set on wrapper; text remains dark */
   .chapter.eos{ border-color: var(--accent-eos); }
   .chapter.tod{ border-color: var(--accent-tod); }
 
-  /* Checkbox - perfectly centered X, white background, color follows currentColor from wrapper */
+  /* Checkbox - white background; border/X color explicitly set per wrapper */
   input[type="checkbox"]{
     appearance:none;
     -webkit-appearance:none;
@@ -123,20 +127,20 @@
     align-items:center;
     justify-content:center;
     cursor:pointer;
-    background:var(--white);
-    border:2px solid currentColor; /* will inherit from wrapper (.chapter.eos/.tod) */
+    background:var(--white); /* always white background */
     box-sizing: border-box;
     flex: 0 0 28px;
+    border: 2px solid #999; /* default fallback if color not set */
   }
 
+  /* Default invisible X */
   input[type="checkbox"]::after{
     content:"";
     opacity:0;
     font-size:18px;
     font-weight:700;
     line-height:1;
-    color: currentColor;
-    transform: none;
+    color: currentColor; /* we will set currentColor on checkbox via per-wrapper rules below */
     transition: opacity 120ms ease;
   }
 
@@ -145,10 +149,30 @@
     opacity:1;
   }
 
+  /* here's the crucial explicit coloring for checkbox border and X,
+     so they don't rely on inherited color which was previously black */
+  /* EoS */
+  .chapter.eos input[type="checkbox"]{
+    border-color: var(--accent-eos);
+    color: var(--accent-eos); /* currentColor used by ::after */
+  }
+  .chapter.eos input[type="checkbox"]::after{
+    color: var(--accent-eos);
+  }
+
+  /* ToD */
+  .chapter.tod input[type="checkbox"]{
+    border-color: var(--accent-tod);
+    color: var(--accent-tod);
+  }
+  .chapter.tod input[type="checkbox"]::after{
+    color: var(--accent-tod);
+  }
+
   /* label text styling */
   .chapter-text{
     flex:1;
-    color: #222;
+    color: var(--text);
     font-size:16px;
     user-select: none;
   }
@@ -212,7 +236,7 @@
 <footer>© SpiceBook</footer>
 
 <script>
-/* Chapter data (exact list you provided) */
+/* Chapter data */
 const chapters = [
 "Empire of Storms – Nightfall",
 "Empire of Storms – Ch 1",
@@ -390,7 +414,9 @@ function renderList(){
     const cb = document.createElement('input');
     cb.type = 'checkbox';
     cb.setAttribute('aria-label', label);
-    // set color via wrapper class currentColor
+
+    // explicit coloring for checkbox via wrapper classes handled by CSS selectors
+
     // restore state
     if(loadProgressIndex(i)) cb.checked = true;
 
@@ -415,7 +441,8 @@ function updateProgress(){
     if(loadProgressIndex(i)) checked++;
   }
   const pct = Math.round((checked/total)*100);
-  progressBar.style.width = pct + '%';
+  const bar = document.getElementById('progress-bar');
+  if(bar) bar.style.width = pct + '%';
   progressText.textContent = pct + '% completed';
 }
 
