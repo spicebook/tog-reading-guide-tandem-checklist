@@ -23,12 +23,21 @@ body {
 }
 
 header {
-    padding: 20px 10px;
+    padding: 20px 10px 5px;
     text-align: center;
     font-family: "EB Garamond", serif;
     font-size: 26px;
     font-weight: 700;
     -webkit-text-stroke: 0.5px #C2052B;
+}
+
+.description {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto 15px;
+    padding: 0 15px;
+    font-size: 15px;
+    color: #C2052B;
 }
 
 /* PROGRESS BAR */
@@ -103,8 +112,10 @@ header {
     place-items: center;
     cursor: pointer;
     border-width: 2px;
+    border-style: solid;
 }
 
+/* FORCE COLORS */
 .chapter.eos input[type="checkbox"] {
     border-color: var(--eos);
     color: var(--eos);
@@ -140,6 +151,7 @@ header {
     text-align: center;
     border-radius: 8px;
     cursor: pointer;
+    border: none; /* FIX BLACK BORDER */
 }
 
 /* BACK BUTTON */
@@ -156,10 +168,8 @@ header {
     text-decoration: none;
     box-shadow: 0 4px 10px rgba(0,0,0,0.25);
     z-index: 999;
-    cursor: pointer;
 }
 
-/* FOOTER */
 footer {
     text-align: center;
     padding: 40px 0 20px;
@@ -172,6 +182,11 @@ footer {
 <body>
 
 <header>Empire of Storms / Tower of Dawn Tandem Checklist</header>
+
+<div class="description">
+Use this checklist when your reading order brings you to <b>Empire of Storms</b> and <b>Tower of Dawn</b>.<br>
+These two books take place at the same time, so alternating chapters keeps the timeline in proper chronological order.
+</div>
 
 <div id="progressContainer">
     <div id="progressBarBackground">
@@ -189,7 +204,6 @@ footer {
 <footer>
     © SpiceBook
     <div style="margin-top:12px;">
-        <!-- DROP YOUR SVG LOGO FILE IN THE SAME FOLDER WITH THIS NAME -->
         <img src="spicebook-logo.svg" style="width:85px; display:block; margin:0 auto;">
     </div>
 </footer>
@@ -216,7 +230,7 @@ const chapters = [
 "Empire of Storms – Ch 11",
 "Tower of Dawn – Ch 7",
 "Empire of Storms – Ch 12",
-"Empire of StormS – Ch 13",
+"Empire of Storms – Ch 13",
 "Tower of Dawn – Ch 8",
 "Tower of Dawn – Ch 9",
 "Tower of Dawn – Ch 10",
@@ -242,7 +256,7 @@ const chapters = [
 "Tower of Dawn – Ch 20",
 "Tower of Dawn – Ch 21",
 "Empire of Storms – Ch 24",
-"Empire of Storms – Ch 25",
+"Empire of StormS – Ch 25",
 "Tower of Dawn – Ch 22",
 "Tower of Dawn – Ch 23",
 "Empire of Storms – Ch 26",
@@ -264,9 +278,9 @@ const chapters = [
 "Tower of Dawn – Ch 33",
 "Tower of Dawn – Ch 34",
 "Tower of Dawn – Ch 35",
-"Empire of Storms – Ch 33",
-"Empire of Storms – Ch 34",
-"Empire of Storms – Ch 35",
+"Empire of StormS – Ch 33",
+"Empire of StormS – Ch 34",
+"Empire of StormS – Ch 35",
 "Empire of Storms – Ch 36",
 "Empire of Storms – Ch 37",
 "Empire of Storms – Ch 38",
@@ -282,7 +296,7 @@ const chapters = [
 "Empire of Storms – Ch 48",
 "Empire of Storms – Ch 49",
 "Empire of Storms – Ch 50",
-"Empire of Storms – Ch 51",
+"Empire of StormS – Ch 51",
 "Tower of Dawn – Ch 36",
 "Tower of Dawn – Ch 37",
 "Empire of Storms – Ch 52",
@@ -293,8 +307,8 @@ const chapters = [
 "Tower of Dawn – Ch 41",
 "Tower of Dawn – Ch 42",
 "Empire of Storms – Ch 54",
-"Empire of Storms – Ch 55",
-"Empire of Storms – Ch 56",
+"Empire of StormS – Ch 55",
+"Empire of StormS – Ch 56",
 "Tower of Dawn – Ch 43",
 "Empire of Storms – Ch 57",
 "Empire of Storms – Ch 58",
@@ -305,7 +319,7 @@ const chapters = [
 "Tower of Dawn – Ch 47",
 "Tower of Dawn – Ch 48",
 "Empire of Storms – Ch 60",
-"Empire of StormS – Ch 61",
+"Empire of Storms – Ch 61",
 "Tower of Dawn – Ch 49",
 "Tower of Dawn – Ch 50",
 "Tower of Dawn – Ch 51",
@@ -318,7 +332,7 @@ const chapters = [
 "Tower of Dawn – Ch 54",
 "Tower of Dawn – Ch 55",
 "Tower of Dawn – Ch 56",
-"Empire of Storms – Ch 66",
+"Empire of StormS – Ch 66",
 "Empire of Storms – Ch 67",
 "Tower of Dawn – Ch 57",
 "Empire of Storms – Ch 68",
@@ -327,8 +341,8 @@ const chapters = [
 "Empire of Storms – Ch 71",
 "Empire of Storms – Ch 72",
 "Empire of Storms – Ch 73",
-"Empire of StormS – Ch 74",
-"Empire of StormS – Ch 75",
+"Empire of Storms – Ch 74",
+"Empire of Storms – Ch 75",
 "Tower of Dawn – Ch 58",
 "Tower of Dawn – Ch 59",
 "Tower of Dawn – Ch 60",
