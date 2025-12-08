@@ -13,6 +13,7 @@
     --red: #C2052B;
 }
 
+/* BASE */
 body {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     background: #FED5D3;
@@ -21,8 +22,9 @@ body {
     color: var(--red);
 }
 
+/* HEADER */
 header {
-    padding: 20px 10px 5px;
+    padding: 20px 10px 0;
     text-align: center;
     font-family: "EB Garamond", serif;
     font-size: 30px;
@@ -30,14 +32,18 @@ header {
     -webkit-text-stroke: 0.5px var(--red);
 }
 
+/* SUBTITLE 1 — "Reading Order Options" */
 .subhead-title {
     font-family: "EB Garamond", serif;
     font-size: 22px;
     text-align: center;
+    font-weight: 700;
     margin-top: 6px;
+    margin-bottom: 4px;
     -webkit-text-stroke: 0.4px var(--red);
 }
 
+/* DESCRIPTION */
 .subhead-desc {
     text-align: center;
     max-width: 600px;
@@ -45,6 +51,7 @@ header {
     padding: 0 20px;
     font-size: 15px;
     line-height: 1.4;
+    color: var(--red);
 }
 
 /* TABS */
@@ -74,7 +81,7 @@ header {
     color: white;
 }
 
-/* SECTIONS */
+/* CONTENT SECTIONS */
 .content-section {
     display: none;
     max-width: 600px;
@@ -95,7 +102,7 @@ h2 {
     -webkit-text-stroke: 0.4px var(--red);
 }
 
-/* BOOK LIST ITEMS — MATCH TANDEM CARDS */
+/* BOOK LIST CARDS */
 .book-item {
     display: flex;
     align-items: center;
@@ -109,7 +116,7 @@ h2 {
     color: var(--red);
 }
 
-/* CHECKBOX STYLES (MATCH TANDEM) */
+/* CHECKBOX — RED X FIXED */
 .book-item input[type="checkbox"] {
     appearance: none;
     width: 28px;
@@ -127,6 +134,7 @@ h2 {
     font-size: 20px;
     font-weight: 700;
     line-height: 1;
+    color: var(--red) !important;
 }
 
 .book-item input[type="checkbox"]:checked::after {
@@ -149,7 +157,7 @@ h2 {
     text-decoration: none;
 }
 
-/* FOOTER + LOGO */
+/* FOOTER */
 footer {
     text-align: center;
     padding: 40px 0 20px;
@@ -172,9 +180,12 @@ footer {
 <div class="subhead-title">Reading Order Options</div>
 
 <div class="subhead-desc">
-    Choose your reading order. When your read-through brings you to <i>Empire of Storms</i> and <i>Tower of Dawn</i>, follow the alternating chapter checklist to experience both books in true chronological order.
+    Choose your reading order. When your read-through brings you to <i>Empire of Storms</i> and 
+    <i>Tower of Dawn</i>, follow the alternating chapter checklist to experience both books in 
+    true chronological order.
 </div>
 
+<!-- TABS -->
 <div class="tabs">
     <div class="tab active" data-target="recommended">Recommended</div>
     <div class="tab" data-target="chronological">Chronological</div>
@@ -186,7 +197,9 @@ footer {
     <h2>Recommended Reading Order</h2>
 
     <p>
-        This order places <i>The Assassin’s Blade</i> at the point of highest emotional impact and shifts <i>Tower of Dawn</i> for a smoother transition between <i>Empire of Storms</i> and <i>Kingdom of Ash</i>.
+        This order places <i>The Assassin’s Blade</i> at the point of highest emotional impact and moves 
+        <i>Tower of Dawn</i> for smoother story flow between <i>Empire of Storms</i> and 
+        <i>Kingdom of Ash</i>.
     </p>
 
     <div class="book-item"><input type="checkbox" data-key="rec1">1. Throne of Glass</div>
@@ -206,7 +219,8 @@ footer {
     <h2>Chronological Reading Order</h2>
 
     <p>
-        This order follows the internal timeline, placing <i>The Assassin’s Blade</i> first and reading <i>Tower of Dawn</i> after <i>Empire of Storms</i>.
+        This order follows the internal timeline, placing <i>The Assassin’s Blade</i> first and reading 
+        <i>Tower of Dawn</i> after <i>Empire of Storms</i>.
     </p>
 
     <div class="book-item"><input type="checkbox" data-key="chrono1">1. The Assassin's Blade</div>
@@ -242,7 +256,7 @@ tabs.forEach(tab => {
     });
 });
 
-// Save progress
+// Save checkbox progress
 const boxes = document.querySelectorAll("input[type=checkbox]");
 
 boxes.forEach(box => {
