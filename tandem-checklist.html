@@ -69,6 +69,23 @@ header {
     color: #C2052B;
 }
 
+/* CLEAR PROGRESS BUTTON — MOVED TO TOP */
+#clearButton {
+    display: block;
+    width: 90%;
+    max-width: 600px;
+    margin: 15px auto 15px;
+    padding: 12px;
+    background: #C2052B;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+    border-radius: 8px;
+    cursor: pointer;
+    border: none;
+}
+
 /* LIST */
 #list {
     padding: 10px;
@@ -86,6 +103,7 @@ header {
     background: white;
     border: 2px solid;
     font-size: 16px;
+    transition: color 0.2s ease;
 }
 
 /* EoS red */
@@ -100,7 +118,13 @@ header {
     color: var(--tod);
 }
 
-/* CHECKBOX — FULL FIX */
+/* Strike-through when completed */
+.chapter.completed {
+    text-decoration: line-through;
+    opacity: 0.6;
+}
+
+/* CHECKBOX */
 .chapter input[type="checkbox"] {
     -webkit-appearance: none;
     appearance: none;
@@ -137,23 +161,6 @@ header {
     content: "✕";
 }
 
-/* CLEAR PROGRESS BUTTON */
-#clearButton {
-    display: block;
-    width: 90%;
-    max-width: 600px;
-    margin: 20px auto 10px;
-    padding: 12px;
-    background: #C2052B;
-    color: white;
-    font-size: 16px;
-    font-weight: 600;
-    text-align: center;
-    border-radius: 8px;
-    cursor: pointer;
-    border: none; /* FIX BLACK BORDER */
-}
-
 /* BACK BUTTON */
 #backButton {
     position: fixed;
@@ -188,6 +195,9 @@ Use this checklist when your reading order brings you to <i>Empire of Storms</i>
 These two books take place at the same time, so alternating chapters keeps the timeline in proper chronological order.
 </div>
 
+<!-- CLEAR BUTTON AT TOP -->
+<button id="clearButton">Clear All Progress</button>
+
 <div id="progressContainer">
     <div id="progressBarBackground">
         <div id="progressBar"></div>
@@ -196,8 +206,6 @@ These two books take place at the same time, so alternating chapters keeps the t
 </div>
 
 <div id="list"></div>
-
-<button id="clearButton">Clear All Progress</button>
 
 <a id="backButton" href="reading-order.html">← Back to Reading Order</a>
 
@@ -236,7 +244,7 @@ const chapters = [
 "Tower of Dawn – Ch 10",
 "Empire of Storms – Ch 14",
 "Empire of Storms – Ch 15",
-"Empire of Storms – Ch 16",
+"Empire of StormS – Ch 16",
 "Tower of Dawn – Ch 11",
 "Tower of Dawn – Ch 12",
 "Empire of Storms – Ch 17",
@@ -376,11 +384,19 @@ chapters.forEach((chapter, index) => {
 
     const checkbox = document.createElement("input");
     checkbox.type = "checkbox";
+    checkbox.dataset.index = index;
 
-    if (localStorage.getItem("ch" + index) === "1") checkbox.checked = true;
+    if (localStorage.getItem("ch" + index) === "1") {
+        checkbox.checked = true;
+        wrapper.classList.add("completed");
+    }
 
     checkbox.addEventListener("change", () => {
         localStorage.setItem("ch" + index, checkbox.checked ? "1" : "0");
+
+        if (checkbox.checked) wrapper.classList.add("completed");
+        else wrapper.classList.remove("completed");
+
         updateProgress();
     });
 
