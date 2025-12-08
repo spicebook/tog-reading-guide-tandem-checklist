@@ -186,6 +186,40 @@ footer {
     display: block;
     margin: 0 auto;
 }
+/* SHARE BUTTONS */
+.share-buttons {
+    text-align: center;
+    margin: 20px auto 30px;
+    width: 90%;
+    max-width: 600px;
+}
+
+.share-title {
+    font-family: "EB Garamond", serif;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    -webkit-text-stroke: 0.4px var(--red);
+}
+
+.share-btn {
+    display: block;
+    background: var(--red);
+    color: white;
+    padding: 12px;
+    margin: 8px auto;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 350px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.share-btn:hover {
+    opacity: 0.9;
+}
+
 </style>
 </head>
 
@@ -209,6 +243,14 @@ footer {
 <div id="list"></div>
 
 <a id="backButton" href="reading-order.html">← Back to Reading Order</a>
+<div class="share-buttons">
+    <div class="share-title">Share this page</div>
+
+    <a class="share-btn" id="share-twitter" target="_blank">Twitter / X</a>
+    <a class="share-btn" id="share-facebook" target="_blank">Facebook</a>
+    <a class="share-btn" id="share-reddit" target="_blank">Reddit</a>
+    <a class="share-btn" id="share-copy">Copy Link</a>
+</div>
 
 <footer>
     Brought to you by
@@ -422,6 +464,27 @@ document.getElementById("clearButton").addEventListener("click", () => {
     }
     location.reload();
 });
+/* SHARE BUTTONS */
+const currentURL = window.location.href;
+
+document.getElementById("share-twitter").href =
+    "https://twitter.com/intent/tweet?text=" +
+    encodeURIComponent("Throne of Glass Reading Order Guide — SpiceBook") +
+    "&url=" + encodeURIComponent(currentURL);
+
+document.getElementById("share-facebook").href =
+    "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(currentURL);
+
+document.getElementById("share-reddit").href =
+    "https://www.reddit.com/submit?title=" +
+    encodeURIComponent("Throne of Glass Reading Order Guide — SpiceBook") +
+    "&url=" + encodeURIComponent(currentURL);
+
+document.getElementById("share-copy").addEventListener("click", () => {
+    navigator.clipboard.writeText(currentURL);
+    alert("Link copied!");
+});
+
 </script>
 
 </body>
