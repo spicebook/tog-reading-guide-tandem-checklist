@@ -82,6 +82,25 @@
         opacity: 0.7;
         font-size: 14px;
     }
+    /* FLOATING BACK BUTTON */
+#backButton {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #C2052B;
+    color: white;
+    padding: 12px 18px;
+    border-radius: 30px;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+    z-index: 999;
+}
+
+#backButton:hover {
+    opacity: 0.85;
+}
 </style>
 </head>
 
@@ -90,6 +109,7 @@
 <header>Empire of Storms / Tower of Dawn Tandem Checklist</header>
 
 <div id="list"></div>
+<a id="backButton" href="reading-order.html">← Back to Reading Order</a>
 
 <footer>© SpiceBook</footer>
 
