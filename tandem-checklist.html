@@ -43,7 +43,7 @@
     margin:0 auto 16px;
     line-height:1.45;
     padding:0 8px;
-    color: rgba(0,0,0,0.85);
+    color: var(--accent-eos); /* subtitle matches header accent */
   }
 
   /* Progress area */
@@ -110,7 +110,7 @@
     box-shadow: 0 2px 6px rgba(0,0,0,0.04);
   }
 
-  /* ONLY border color set on wrapper; text remains dark */
+  /* Border color only on wrapper; keep text color controlled separately */
   .chapter.eos{ border-color: var(--accent-eos); }
   .chapter.tod{ border-color: var(--accent-tod); }
 
@@ -127,10 +127,10 @@
     align-items:center;
     justify-content:center;
     cursor:pointer;
-    background:var(--white); /* always white background */
+    background:var(--white); /* always white */
     box-sizing: border-box;
     flex: 0 0 28px;
-    border: 2px solid #999; /* default fallback if color not set */
+    border: 2px solid #999; /* fallback */
   }
 
   /* Default invisible X */
@@ -140,7 +140,7 @@
     font-size:18px;
     font-weight:700;
     line-height:1;
-    color: currentColor; /* we will set currentColor on checkbox via per-wrapper rules below */
+    color: currentColor;
     transition: opacity 120ms ease;
   }
 
@@ -149,18 +149,15 @@
     opacity:1;
   }
 
-  /* here's the crucial explicit coloring for checkbox border and X,
-     so they don't rely on inherited color which was previously black */
-  /* EoS */
+  /* Crucial: explicitly set checkbox border & X color for each wrapper to avoid inheriting wrong color */
   .chapter.eos input[type="checkbox"]{
     border-color: var(--accent-eos);
-    color: var(--accent-eos); /* currentColor used by ::after */
+    color: var(--accent-eos);
   }
   .chapter.eos input[type="checkbox"]::after{
     color: var(--accent-eos);
   }
 
-  /* ToD */
   .chapter.tod input[type="checkbox"]{
     border-color: var(--accent-tod);
     color: var(--accent-tod);
@@ -169,10 +166,13 @@
     color: var(--accent-tod);
   }
 
-  /* label text styling */
+  /* TEXT COLOR: set chapter label color per book (what you wanted) */
+  .chapter.eos .chapter-text{ color: var(--accent-eos); font-weight:600; }
+  .chapter.tod .chapter-text{ color: var(--accent-tod); font-weight:600; }
+
+  /* label text styling (general) */
   .chapter-text{
     flex:1;
-    color: var(--text);
     font-size:16px;
     user-select: none;
   }
@@ -414,8 +414,6 @@ function renderList(){
     const cb = document.createElement('input');
     cb.type = 'checkbox';
     cb.setAttribute('aria-label', label);
-
-    // explicit coloring for checkbox via wrapper classes handled by CSS selectors
 
     // restore state
     if(loadProgressIndex(i)) cb.checked = true;
