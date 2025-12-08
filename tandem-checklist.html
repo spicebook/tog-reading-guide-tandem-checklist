@@ -1,228 +1,187 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Tandem Checklist — SpiceBook</title>
 
 <!-- EB Garamond -->
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;600;700&display=swap" rel="stylesheet">
 
 <style>
-  :root{
-    --bg: #FED5D3;
+:root {
     --eos: #C2052B;
     --tod: #FD9683;
-    --white: #ffffff;
-    --text: #2a2a2a;
-  }
+}
 
-  html,body{
-    height:100%;
-    margin:0;
-    background:var(--bg);
-    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-    color:var(--text);
-  }
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: #FED5D3;
+    margin: 0;
+    padding-bottom: 70px;
+    color: #C2052B;
+}
 
-  header{
-    text-align:center;
-    font-family:"EB Garamond", serif;
-    font-weight:700;
-    font-size:28px;
-    padding:28px 12px 6px;
-    -webkit-text-stroke:0.5px var(--eos);
-    text-stroke:0.5px var(--eos);
-    color:var(--eos);
-  }
+header {
+    padding: 20px 10px;
+    text-align: center;
+    font-family: "EB Garamond", serif;
+    font-size: 28px;
+    font-weight: 700;
+    -webkit-text-stroke: 0.5px #C2052B;
+}
 
-  /* description */
-  #description{
-    max-width:760px;           /* wider so it doesn't squish */
-    width:90%;
-    margin:0 auto 18px;
-    text-align:center;
-    font-size:15px;
-    line-height:1.45;
-    color:var(--eos);
-    padding:0 8px;
-  }
+#progressContainer {
+    width: 90%;
+    margin: 0 auto 15px;
+}
 
-  /* progress */
-  .progressWrap{
-    width:90%;
-    max-width:900px;
-    margin: 6px auto 14px;
-    text-align:center;
-  }
-  #progressText{
-    color:var(--eos);
-    font-weight:700;
-    margin-bottom:8px;
-  }
-  #progressTrack{
-    height:16px;
-    border-radius:12px;
-    background:var(--white);
-    border:2px solid var(--eos);
-    overflow:hidden;
-  }
-  #progressBar{
-    height:100%;
-    width:0%;
-    background:var(--eos);
-    transition:width .25s ease;
-  }
+#progressBarBackground {
+    width: 100%;
+    height: 10px;
+    background: white;
+    border-radius: 6px;
+}
 
-  /* clear button */
-  #clearBtn{
-    display:inline-block;
-    margin:14px auto;
-    background:var(--eos);
-    color:white;
-    border:none;
-    padding:10px 14px;
-    border-radius:12px;
-    font-weight:700;
-    cursor:pointer;
-    box-shadow:0 6px 18px rgba(0,0,0,0.12);
-  }
+#progressBar {
+    height: 10px;
+    background: #C2052B;
+    width: 0%;
+    border-radius: 6px;
+}
 
-  /* list */
-  #list{
-    width:92%;
-    max-width:920px;
-    margin: 10px auto 120px;
-    padding:6px;
-  }
+#progressText {
+    text-align: center;
+    margin-top: 6px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #C2052B;
+}
 
-  .chapter{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    padding:12px 14px;
-    margin:10px 6px;
-    border-radius:10px;
-    border:2px solid #eee;     /* will be overridden by .eos/.tod */
-    background:transparent;    /* IMPORTANT: transparent card */
-    font-size:16px;
-  }
+#list {
+    padding: 10px;
+}
 
-  .chapter.eos{ border-color:var(--eos); color:var(--eos); }
-  .chapter.tod{ border-color:var(--tod); color:var(--tod); }
+.chapter {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px;
+    margin: 10px 6px;
+    border-radius: 10px;
+    background: white; 
+    border: 2px solid;
+    font-size: 16px;
+    color: inherit;
+}
 
-  .chapter .text{
-    flex:1;
-    color:inherit;   /* inherit from .chapter (eos/tod) */
-    font-weight:600;
-    user-select:none;
-  }
+.chapter.eos {
+    border-color: var(--eos);
+    color: var(--eos);
+}
 
-  /* checkbox styling - white box only, centered X */
-  input[type="checkbox"]{
-    -webkit-appearance:none;
-    appearance:none;
-    width:28px;
-    height:28px;
-    border-radius:6px;
-    background:var(--white);         /* checkbox background only */
-    border:2px solid currentColor;   /* color comes from wrapper (.eos/.tod) */
-    display:grid;
-    place-items:center;              /* centers checkmark perfectly */
-    cursor:pointer;
-    padding:0;
-    box-sizing:border-box;
-    flex:0 0 28px;
-  }
+.chapter.tod {
+    border-color: var(--tod);
+    color: var(--tod);
+}
 
-  /* use ::after for X; it's centered by the input grid */
-  input[type="checkbox"]::after{
-    content:"";
-    font-size:20px;
-    font-weight:700;
-    line-height:1;
-    color:currentColor;
-  }
+/* CHECKBOX */
+input[type="checkbox"] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    background: white;
+    border: 2px solid currentColor;
+    color: inherit !important;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+}
 
-  input[type="checkbox"]:not(:checked)::after{ content:""; } /* empty when unchecked */
-  input[type="checkbox"]:checked::after{ content:"✕"; }
+input[type="checkbox"]::after {
+    content: "";
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1;
+    color: inherit !important;
+}
 
-  /* floating back button */
-  #backButton{
-    position:fixed;
-    right:18px;
-    bottom:18px;
-    background:var(--eos);
-    color:white;
-    padding:12px 16px;
-    border-radius:30px;
-    font-weight:700;
-    text-decoration:none;
-    box-shadow:0 8px 30px rgba(0,0,0,0.16);
-    z-index:999;
-  }
+input[type="checkbox"]:checked::after {
+    content: "✕";
+}
 
-  footer{
-    text-align:center;
-    padding:36px 10px;
-    color:var(--eos);
-    font-weight:600;
-  }
+/* CLEAR PROGRESS BUTTON */
+#clearButton {
+    display: block;
+    width: 90%;
+    margin: 20px auto;
+    padding: 12px;
+    background: #C2052B;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+    border-radius: 8px;
+}
 
-  /* small centered footer logo */
-  .footer-logo{
-    display:block;
-    width:72px;
-    margin:10px auto 0;
-  }
+/* BACK BUTTON */
+#backButton {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #C2052B;
+    color: white;
+    padding: 12px 18px;
+    border-radius: 30px;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+    z-index: 999;
+}
 
-  /* responsiveness */
-  @media (max-width:420px){
-    header{font-size:22px}
-    input[type="checkbox"]{ width:26px; height:26px }
-    .chapter{ font-size:15px; padding:10px }
-    #description{ max-width:320px }
-  }
+footer {
+    text-align: center;
+    padding: 40px 0 20px;
+    font-size: 14px;
+    color: #C2052B;
+}
+
 </style>
 </head>
+
 <body>
 
 <header>Empire of Storms / Tower of Dawn Tandem Checklist</header>
 
-<div id="description">
-  Use this checklist when your reading order brings you to <strong>Empire of Storms</strong> and <strong>Tower of Dawn</strong>.
-  These two books happen at the same time — alternating the chapters lets you read the timeline in the intended chronological order.
+<div id="progressContainer">
+    <div id="progressBarBackground">
+        <div id="progressBar"></div>
+    </div>
+    <div id="progressText">0% Complete</div>
 </div>
 
-<div class="progressWrap" aria-hidden="false">
-  <div id="progressText">0% complete</div>
-  <div id="progressTrack"><div id="progressBar"></div></div>
-</div>
+<div id="list"></div>
 
-<div style="text-align:center;">
-  <button id="clearBtn" aria-label="Clear all progress">Clear All Progress</button>
-</div>
-
-<div id="list" role="list" aria-label="Tandem checklist"></div>
+<button id="clearButton">Clear All Progress</button>
 
 <a id="backButton" href="reading-order.html">← Back to Reading Order</a>
 
 <footer>
-  © SpiceBook
-  <!-- small clean SVG logo (no Illustrator metadata) -->
-  <svg class="footer-logo" viewBox="0 0 200 40" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
-    <path d="M18 20h60M122 20h60" stroke="#C2052B" stroke-width="2" stroke-linecap="round" />
-    <circle cx="100" cy="20" r="6" stroke="#C2052B" stroke-width="2" fill="none" />
-    <circle cx="100" cy="20" r="2" fill="#C2052B" />
-  </svg>
+    © SpiceBook
+    <div style="margin-top:12px;">
+        <!-- PLACE YOUR SVG FILE HERE (we'll fix it next) -->
+        <img src="spicebook-logo.svg" style="width:85px; display:block; margin:0 auto;">
+    </div>
 </footer>
 
 <script>
-/* ---------- chapter list (your list) ---------- */
 const chapters = [
 "Empire of Storms – Nightfall",
 "Empire of Storms – Ch 1",
-"Empire of Storms – Ch 2",
+"Empire of StormS – Ch 2",
 "Empire of Storms – Ch 3",
 "Empire of Storms – Ch 4",
 "Empire of Storms – Ch 5",
@@ -367,57 +326,45 @@ const chapters = [
 "Tower of Dawn – Fireheart"
 ];
 
-/* ---------- render list ---------- */
-const listEl = document.getElementById('list');
+const list = document.getElementById("list");
 
-function isToD(label){ return label.toLowerCase().startsWith('tower of dawn'); }
-function isEoS(label){ return label.toLowerCase().startsWith('empire of storms'); }
-
-chapters.forEach((label, i) => {
-  const wrapper = document.createElement('label');
-  wrapper.className = 'chapter ' + (isEoS(label) ? 'eos' : 'tod');
-
-  const cb = document.createElement('input');
-  cb.type = 'checkbox';
-  cb.setAttribute('aria-label', label);
-
-  // restore
-  if(localStorage.getItem('ch' + i) === '1') cb.checked = true;
-
-  cb.addEventListener('change', () => {
-    try { localStorage.setItem('ch' + i, cb.checked ? '1' : '0'); } catch(e){}
-    updateProgress();
-  });
-
-  const text = document.createElement('div');
-  text.className = 'text';
-  text.textContent = label;
-
-  wrapper.appendChild(cb);
-  wrapper.appendChild(text);
-  listEl.appendChild(wrapper);
-});
-
-/* ---------- progress ---------- */
-const progressBar = document.getElementById('progressBar');
-const progressText = document.getElementById('progressText');
-
-function updateProgress(){
-  const total = chapters.length;
-  const checked = Array.from(document.querySelectorAll('#list input[type="checkbox"]')).filter(x=>x.checked).length;
-  const pct = Math.round((checked/total)*100);
-  progressBar.style.width = pct + '%';
-  progressText.textContent = pct + '% complete';
+function updateProgress() {
+    let checked = 0;
+    for (let i = 0; i < chapters.length; i++) {
+        if (localStorage.getItem("ch" + i) === "1") checked++;
+    }
+    const percent = Math.round((checked / chapters.length) * 100);
+    document.getElementById("progressBar").style.width = percent + "%";
+    document.getElementById("progressText").textContent = percent + "% Complete";
 }
+
+chapters.forEach((chapter, index) => {
+    const wrapper = document.createElement("label");
+    wrapper.className =
+        "chapter " + (chapter.startsWith("Empire") ? "eos" : "tod");
+
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+
+    if (localStorage.getItem("ch" + index) === "1") checkbox.checked = true;
+
+    checkbox.addEventListener("change", () => {
+        localStorage.setItem("ch" + index, checkbox.checked ? "1" : "0");
+        updateProgress();
+    });
+
+    wrapper.appendChild(checkbox);
+    wrapper.appendChild(document.createTextNode(chapter));
+    list.appendChild(wrapper);
+});
 
 updateProgress();
 
-/* ---------- clear ---------- */
-document.getElementById('clearBtn').addEventListener('click', () => {
-  if(!confirm('Clear all saved progress?')) return;
-  chapters.forEach((_,i)=> localStorage.removeItem('ch' + i));
-  document.querySelectorAll('#list input[type="checkbox"]').forEach(cb=> cb.checked=false);
-  updateProgress();
+document.getElementById("clearButton").addEventListener("click", () => {
+    for (let i = 0; i < chapters.length; i++) {
+        localStorage.removeItem("ch" + i);
+    }
+    location.reload();
 });
 </script>
 
