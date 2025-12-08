@@ -69,7 +69,7 @@ header {
     color: #C2052B;
 }
 
-/* CLEAR PROGRESS BUTTON — MOVED TO TOP */
+/* CLEAR PROGRESS BUTTON — TOP */
 #clearButton {
     display: block;
     width: 90%;
@@ -103,7 +103,6 @@ header {
     background: white;
     border: 2px solid;
     font-size: 16px;
-    transition: color 0.2s ease;
 }
 
 /* EoS red */
@@ -118,8 +117,8 @@ header {
     color: var(--tod);
 }
 
-/* Strike-through when completed */
-.chapter.completed {
+/* STRIKE-THROUGH TEXT ONLY */
+.chapter.completed .chapterText {
     text-decoration: line-through;
     opacity: 0.6;
 }
@@ -139,7 +138,6 @@ header {
     border-style: solid;
 }
 
-/* FORCE COLORS */
 .chapter.eos input[type="checkbox"] {
     border-color: var(--eos);
     color: var(--eos);
@@ -195,7 +193,6 @@ Use this checklist when your reading order brings you to <i>Empire of Storms</i>
 These two books take place at the same time, so alternating chapters keeps the timeline in proper chronological order.
 </div>
 
-<!-- CLEAR BUTTON AT TOP -->
 <button id="clearButton">Clear All Progress</button>
 
 <div id="progressContainer">
@@ -222,7 +219,7 @@ const chapters = [
 "Empire of Storms – Ch 1",
 "Empire of Storms – Ch 2",
 "Empire of Storms – Ch 3",
-"Empire of Storms – Ch 4",
+"Empire of StormS – Ch 4",
 "Empire of Storms – Ch 5",
 "Tower of Dawn – Ch 1",
 "Empire of Storms – Ch 6",
@@ -244,7 +241,7 @@ const chapters = [
 "Tower of Dawn – Ch 10",
 "Empire of Storms – Ch 14",
 "Empire of Storms – Ch 15",
-"Empire of StormS – Ch 16",
+"Empire of Storms – Ch 16",
 "Tower of Dawn – Ch 11",
 "Tower of Dawn – Ch 12",
 "Empire of Storms – Ch 17",
@@ -286,9 +283,9 @@ const chapters = [
 "Tower of Dawn – Ch 33",
 "Tower of Dawn – Ch 34",
 "Tower of Dawn – Ch 35",
-"Empire of StormS – Ch 33",
-"Empire of StormS – Ch 34",
-"Empire of StormS – Ch 35",
+"Empire of Storms – Ch 33",
+"Empire of Storms – Ch 34",
+"Empire of Storms – Ch 35",
 "Empire of Storms – Ch 36",
 "Empire of Storms – Ch 37",
 "Empire of Storms – Ch 38",
@@ -304,7 +301,7 @@ const chapters = [
 "Empire of Storms – Ch 48",
 "Empire of Storms – Ch 49",
 "Empire of Storms – Ch 50",
-"Empire of StormS – Ch 51",
+"Empire of Storms – Ch 51",
 "Tower of Dawn – Ch 36",
 "Tower of Dawn – Ch 37",
 "Empire of Storms – Ch 52",
@@ -315,8 +312,8 @@ const chapters = [
 "Tower of Dawn – Ch 41",
 "Tower of Dawn – Ch 42",
 "Empire of Storms – Ch 54",
-"Empire of StormS – Ch 55",
-"Empire of StormS – Ch 56",
+"Empire of Storms – Ch 55",
+"Empire of Storms – Ch 56",
 "Tower of Dawn – Ch 43",
 "Empire of Storms – Ch 57",
 "Empire of Storms – Ch 58",
@@ -340,7 +337,7 @@ const chapters = [
 "Tower of Dawn – Ch 54",
 "Tower of Dawn – Ch 55",
 "Tower of Dawn – Ch 56",
-"Empire of StormS – Ch 66",
+"Empire of Storms – Ch 66",
 "Empire of Storms – Ch 67",
 "Tower of Dawn – Ch 57",
 "Empire of Storms – Ch 68",
@@ -386,6 +383,10 @@ chapters.forEach((chapter, index) => {
     checkbox.type = "checkbox";
     checkbox.dataset.index = index;
 
+    const textSpan = document.createElement("span");
+    textSpan.className = "chapterText";
+    textSpan.textContent = chapter;
+
     if (localStorage.getItem("ch" + index) === "1") {
         checkbox.checked = true;
         wrapper.classList.add("completed");
@@ -401,7 +402,7 @@ chapters.forEach((chapter, index) => {
     });
 
     wrapper.appendChild(checkbox);
-    wrapper.appendChild(document.createTextNode(chapter));
+    wrapper.appendChild(textSpan);
     list.appendChild(wrapper);
 });
 
