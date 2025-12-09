@@ -22,7 +22,7 @@ body {
     color: var(--red);
 }
 
-/* WRAPPER (matches Tandem page spacing) */
+/* WRAPPER */
 .page-wrap {
     width: 90%;
     max-width: 600px;
@@ -39,7 +39,7 @@ header {
     -webkit-text-stroke: 0.5px var(--red);
 }
 
-/* SUBTITLE 1 — "Reading Order Options" */
+/* SUBTITLE */
 .subhead-title {
     font-family: "EB Garamond", serif;
     font-size: 22px;
@@ -61,7 +61,7 @@ header {
     color: var(--red);
 }
 
-/* TABS (keeps same look as tandem list cards) */
+/* TABS */
 .tabs {
     display: flex;
     margin: 0 auto 10px;
@@ -70,7 +70,6 @@ header {
     border: 2px solid var(--red);
     background: white;
 }
-
 .tab {
     flex: 1;
     text-align: center;
@@ -82,7 +81,6 @@ header {
     color: var(--red);
     background: white;
 }
-
 .tab.active {
     background: var(--red);
     color: white;
@@ -94,11 +92,9 @@ header {
     padding: 10px 0 0;
     line-height: 1.5;
 }
-
 .content-section.active {
     display: block;
 }
-
 .content-section h2 {
     font-family: "EB Garamond", serif;
     font-size: 22px;
@@ -107,14 +103,13 @@ header {
     text-align: center;
     margin: 8px 0 10px;
 }
-
 .content-section p {
     text-align: center;
     margin: 0 0 18px;
     padding: 0 10px;
 }
 
-/* BOOK LIST CARDS (styled like Tandem chapter cards) */
+/* BOOK LIST CARDS */
 .book-item {
     display: flex;
     align-items: center;
@@ -140,7 +135,6 @@ header {
     place-items: center;
     cursor: pointer;
 }
-
 .book-item input[type="checkbox"]::after {
     content: "";
     font-size: 20px;
@@ -148,18 +142,17 @@ header {
     line-height: 1;
     color: var(--red) !important;
 }
-
 .book-item input[type="checkbox"]:checked::after {
     content: "✕";
 }
 
-/* STRIKE-THROUGH ONLY TEXT (text inside the card) */
+/* STRIKE-THROUGH ONLY TEXT */
 .book-item.checked span {
     text-decoration: line-through;
     opacity: 0.6;
 }
 
-/* GO TO TANDEM BUTTON - matches Tandem layout exactly */
+/* TANDEM BUTTON */
 .button {
     display: block;
     width: 90%;
@@ -175,6 +168,30 @@ header {
     text-decoration: none;
 }
 
+/* SHARE BUTTONS ROW (matches Tandem page) */
+.share-buttons {
+    margin: 30px auto 20px;
+    width: 90%;
+    max-width: 600px;
+    text-align: center;
+}
+.share-title {
+    font-family: "EB Garamond", serif;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+.share-row {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+}
+.share-icon {
+    width: 38px;
+    height: 38px;
+    cursor: pointer;
+}
+
 /* FOOTER */
 footer {
     text-align: center;
@@ -182,7 +199,6 @@ footer {
     font-size: 14px;
     color: var(--red);
 }
-
 .logo {
     width: 150px;
     display: block;
@@ -193,7 +209,7 @@ footer {
 
 <body>
 
-<div class="page-wrap"><!-- wrapper to align with Tandem layout -->
+<div class="page-wrap">
 
 <header>Throne of Glass <br>Reading Order</header>
 
@@ -217,34 +233,18 @@ When your read-through brings you to <i>Empire of Storms</i> and <i>Tower of Daw
         The Recommended order places <i>The Assassin’s Blade</i> where it delivers the strongest emotional punch and slightly rearranges <i>Tower of Dawn</i> to create a smoother bridge between <i>Empire of Storms</i> and <i>Kingdom of Ash</i>.
     </p>
 
-    <div class="book-item">
-        <input type="checkbox" data-key="rec1"><span>1. Throne of Glass</span>
-    </div>
-    <div class="book-item">
-        <input type="checkbox" data-key="rec2"><span>2. Crown of Midnight</span>
-    </div>
-    <div class="book-item">
-        <input type="checkbox" data-key="rec3"><span>3. Heir of Fire</span>
-    </div>
-    <div class="book-item">
-        <input type="checkbox" data-key="rec4"><span>4. The Assassin's Blade</span>
-    </div>
-    <div class="book-item">
-        <input type="checkbox" data-key="rec5"><span>5. Queen of Shadows</span>
-    </div>
-    <div class="book-item">
-        <input type="checkbox" data-key="rec6"><span>6. Tower of Dawn</span>
-    </div>
-    <div class="book-item">
-        <input type="checkbox" data-key="rec7"><span>7. Empire of Storms</span>
-    </div>
-    <div class="book-item">
-        <input type="checkbox" data-key="rec8"><span>8. Kingdom of Ash</span>
-    </div>
+    <div class="book-item"><input type="checkbox" data-key="rec1"><span>1. Throne of Glass</span></div>
+    <div class="book-item"><input type="checkbox" data-key="rec2"><span>2. Crown of Midnight</span></div>
+    <div class="book-item"><input type="checkbox" data-key="rec3"><span>3. Heir of Fire</span></div>
+    <div class="book-item"><input type="checkbox" data-key="rec4"><span>4. The Assassin's Blade</span></div>
+    <div class="book-item"><input type="checkbox" data-key="rec5"><span>5. Queen of Shadows</span></div>
+    <div class="book-item"><input type="checkbox" data-key="rec6"><span>6. Tower of Dawn</span></div>
+    <div class="book-item"><input type="checkbox" data-key="rec7"><span>7. Empire of Storms</span></div>
+    <div class="book-item"><input type="checkbox" data-key="rec8"><span>8. Kingdom of Ash</span></div>
 
 </div>
 
-<!-- CHRONOLOGICAL -->
+<!-- CHRONOLOGICAL ORDER -->
 <div id="chronological" class="content-section">
 
     <h2>Chronological Reading Order</h2>
@@ -253,37 +253,33 @@ When your read-through brings you to <i>Empire of Storms</i> and <i>Tower of Daw
         The Chronological order follows the publication/chronological sequence, placing <i>The Assassin’s Blade</i> first as a prequel and keeping <i>Tower of Dawn</i> after <i>Empire of Storms</i> even though they happen concurrently.
     </p>
 
-    <div class="book-item">
-        <input type="checkbox" data-key="chrono1"><span>1. The Assassin's Blade</span>
-    </div>
-    <div class="book-item">
-        <input type="checkbox" data-key="chrono2"><span>2. Throne of Glass</span>
-    </div>
-    <div class="book-item">
-        <input type="checkbox" data-key="chrono3"><span>3. Crown of Midnight</span>
-    </div>
-    <div class="book-item">
-        <input type="checkbox" data-key="chrono4"><span>4. Heir of Fire</span>
-    </div>
-    <div class="book-item">
-        <input type="checkbox" data-key="chrono5"><span>5. Queen of Shadows</span>
-    </div>
-    <div class="book-item">
-        <input type="checkbox" data-key="chrono6"><span>6. Empire of Storms</span>
-    </div>
-    <div class="book-item">
-        <input type="checkbox" data-key="chrono7"><span>7. Tower of Dawn</span>
-    </div>
-    <div class="book-item">
-        <input type="checkbox" data-key="chrono8"><span>8. Kingdom of Ash</span>
-    </div>
+    <div class="book-item"><input type="checkbox" data-key="chrono1"><span>1. The Assassin's Blade</span></div>
+    <div class="book-item"><input type="checkbox" data-key="chrono2"><span>2. Throne of Glass</span></div>
+    <div class="book-item"><input type="checkbox" data-key="chrono3"><span>3. Crown of Midnight</span></div>
+    <div class="book-item"><input type="checkbox" data-key="chrono4"><span>4. Heir of Fire</span></div>
+    <div class="book-item"><input type="checkbox" data-key="chrono5"><span>5. Queen of Shadows</span></div>
+    <div class="book-item"><input type="checkbox" data-key="chrono6"><span>6. Empire of Storms</span></div>
+    <div class="book-item"><input type="checkbox" data-key="chrono7"><span>7. Tower of Dawn</span></div>
+    <div class="book-item"><input type="checkbox" data-key="chrono8"><span>8. Kingdom of Ash</span></div>
 
 </div>
 
-<!-- button matches Tandem layout spacing -->
 <a href="tandem-checklist.html" class="button">Go to Tandem Checklist →</a>
 
-</div> <!-- end .page-wrap -->
+</div><!-- end wrapper -->
+
+<!-- SHARE ICONS -->
+<div class="share-buttons">
+    <div class="share-title">Share this page</div>
+
+    <div class="share-row">
+        <a id="share-twitter" target="_blank"><img src="x-icon.svg" class="share-icon"></a>
+        <a id="share-facebook" target="_blank"><img src="facebook-icon.svg" class="share-icon"></a>
+        <a id="share-reddit" target="_blank"><img src="reddit-icon.svg" class="share-icon"></a>
+        <a id="share-pinterest" target="_blank"><img src="pinterest-icon.svg" class="share-icon"></a>
+        <a id="share-native"><img src="share-icon.svg" class="share-icon"></a>
+    </div>
+</div>
 
 <footer>
     Brought to you by
@@ -306,20 +302,18 @@ tabs.forEach(tab => {
     });
 });
 
-// Save checkbox progress + text strike-through (keeps behavior you already had)
+// Save checkbox progress
 const items = document.querySelectorAll(".book-item");
 
 items.forEach(item => {
     const checkbox = item.querySelector("input[type=checkbox]");
     const key = checkbox.getAttribute("data-key");
 
-    // Load saved state
     if (localStorage.getItem(key) === "1") {
         checkbox.checked = true;
         item.classList.add("checked");
     }
 
-    // Update on click
     checkbox.addEventListener("change", () => {
         if (checkbox.checked) {
             localStorage.setItem(key, "1");
@@ -329,6 +323,39 @@ items.forEach(item => {
             item.classList.remove("checked");
         }
     });
+});
+
+// SHARE BUTTON LOGIC
+const currentURL = window.location.href;
+
+document.getElementById("share-twitter").href =
+    "https://twitter.com/intent/tweet?text=" +
+    encodeURIComponent("Throne of Glass Reading Order — SpiceBook") +
+    "&url=" +
+    encodeURIComponent(currentURL);
+
+document.getElementById("share-facebook").href =
+    "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(currentURL);
+
+document.getElementById("share-reddit").href =
+    "https://www.reddit.com/submit?title=" +
+    encodeURIComponent("Throne of Glass Reading Order — SpiceBook") +
+    "&url=" +
+    encodeURIComponent(currentURL);
+
+document.getElementById("share-pinterest").href =
+    "https://pinterest.com/pin/create/button/?url=" + encodeURIComponent(currentURL);
+
+// Native (mobile) share
+document.getElementById("share-native").addEventListener("click", async () => {
+    if (navigator.share) {
+        await navigator.share({
+            title: "Throne of Glass Reading Order — SpiceBook",
+            url: currentURL
+        });
+    } else {
+        alert("Sharing not supported on this device.");
+    }
 });
 </script>
 
