@@ -60,6 +60,12 @@ header {
     line-height: 1.4;
     color: var(--red);
 }
+<div class="pdf-download">
+    <a href="Throne-of-Glass-Reading-Guide-Tandem-Read.pdf" target="_blank" class="pdf-button">
+        Download Reading Order and Tandem Checklist (PDF)
+    </a>
+</div>
+
 
 /* TABS */
 .tabs {
@@ -204,6 +210,35 @@ footer {
     display: block;
     margin: 12px auto 0;
 }
+/* PDF DOWNLOAD */
+.pdf-download {
+    text-align: center;
+    margin: 18px auto 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.pdf-button {
+    display: inline-block;
+    width: 90%;
+    max-width: 420px;
+    margin: 0 auto;
+    padding: 12px;
+    border: 2px solid var(--red);
+    border-radius: 8px;
+    background: white;
+    color: var(--red);
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.pdf-button.secondary {
+    background: #fff;
+    opacity: 0.9;
+}
+
 </style>
     
 <!-- PWA -->
