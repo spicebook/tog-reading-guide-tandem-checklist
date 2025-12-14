@@ -167,6 +167,29 @@ header {
     border-radius: 8px;
     text-decoration: none;
 }
+/* ALT FORMAT BUTTONS (white style, same width as checklist + tandem) */
+.alt-format .button {
+    background: white;
+    color: var(--red);
+    border: 2px solid var(--red);
+    font-size: 16px;
+    text-align: left;
+}
+
+.alt-format .button span {
+    display: block;
+    font-size: 14px;
+    font-weight: 400;
+    margin-top: 4px;
+    opacity: 0.9;
+}
+
+/* Remove ugly browser focus outlines */
+button:focus,
+button:active {
+    outline: none;
+    box-shadow: none;
+}
 
 /* SHARE BUTTONS ROW (matches Tandem page) */
 .share-buttons {
@@ -406,8 +429,8 @@ In this version, <i>The Assassin’s Blade</i> is read first as a true prequel, 
       <li>Print the checklist</li>
       <li>Keep a personal copy for reference</li>
     </ul>
-
-    <a href="Throne-of-Glass-Reading-Guide.pdf" class="popup-button" target="_blank">
+      
+<a href="Throne-of-Glass-Reading-Guide-Tandem-Read.pdf" class="popup-button" target="_blank">
       Download PDF
     </a>
 
