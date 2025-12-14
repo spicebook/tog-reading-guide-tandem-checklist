@@ -219,30 +219,6 @@ footer {
     font-weight: 700;
     margin-bottom: 12px;
 }
-
-.alt-btn {
-    width: 100%;
-    background: white;
-    border: 2px solid var(--red);
-    color: var(--red);
-    padding: 14px;
-    border-radius: 10px;
-    font-size: 16px;
-    margin-bottom: 12px;
-    cursor: pointer;
-    text-align: left;
-}
-
-.alt-btn span {
-    display: block;
-    font-size: 14px;
-    margin-top: 4px;
-}
-
-.alt-btn.secondary {
-    background: #FFEAEA;
-}
-
 /* POPUPS */
 .popup-overlay {
     display: none;
@@ -377,23 +353,22 @@ In this version, <i>The Assassin’s Blade</i> is read first as a true prequel, 
     <div class="book-item"><input type="checkbox" data-key="chrono8"><span>8. Kingdom of Ash</span></div>
 
 </div>
+<a href="tandem-checklist.html" class="button">Go to Tandem Checklist →</a>
 
 <div class="alt-format">
   <h3>Prefer a different format?</h3>
 
-  <button class="alt-btn" data-popup="pdf-popup">
+ <button class="button" data-popup="pdf-popup" type="button">
     Download the Interactive PDF
     <span>Desktop and print-friendly reading order & checklist with clickable checkboxes.</span>
   </button>
 
-  <button class="alt-btn secondary" data-popup="offline-popup">
+<button class="button" data-popup="offline-popup" type="button">
     Save for Offline Reading
     <span>Add this guide to your phone so you can access it anytime, even without internet.</span>
   </button>
 </div>
 
-
-<a href="tandem-checklist.html" class="button">Go to Tandem Checklist →</a>
 
 </div><!-- end wrapper -->
 
@@ -415,6 +390,67 @@ In this version, <i>The Assassin’s Blade</i> is read first as a true prequel, 
     <img src="spicebook-logo-clean.svg" class="logo" alt="SpiceBook logo">
 </footer>
 
+<!-- PDF POPUP -->
+<div class="popup-overlay" id="pdf-popup">
+  <div class="popup">
+    <h2>Interactive Throne of Glass Reading Guide (PDF)</h2>
+
+    <p>
+      This desktop-friendly PDF includes the full reading order and tandem checklist
+      with clickable checkboxes so you can track your progress as you read.
+    </p>
+
+    <p><strong>Perfect if you want to:</strong></p>
+    <ul>
+      <li>Use the guide on desktop or tablet</li>
+      <li>Print the checklist</li>
+      <li>Keep a personal copy for reference</li>
+    </ul>
+
+    <a href="Throne-of-Glass-Reading-Guide.pdf" class="popup-button" target="_blank">
+      Download PDF
+    </a>
+
+    <button class="close-popup">Close</button>
+  </div>
+</div>
+
+<!-- OFFLINE POPUP -->
+<div class="popup-overlay" id="offline-popup">
+  <div class="popup">
+    <h2>Save This Guide to Your Phone</h2>
+
+    <p>
+      You can save this guide to your phone and open it anytime—even without internet.
+      It will appear on your home screen and open like an app.
+    </p>
+
+    <h4>How to Save</h4>
+
+    <p><strong>iPhone / iPad (Safari):</strong></p>
+    <ol>
+      <li>Tap the Share icon</li>
+      <li>Select <em>Add to Home Screen</em></li>
+      <li>Tap Add</li>
+    </ol>
+
+    <p><strong>Android (Chrome):</strong></p>
+    <ol>
+      <li>Tap the three-dot menu</li>
+      <li>Select <em>Add to Home screen</em></li>
+      <li>Confirm when prompted</li>
+    </ol>
+
+    <p>
+      Once saved, you’ll always have your Throne of Glass reading order and checklist
+      with you while you read.
+    </p>
+
+    <button class="popup-button" id="add-to-home">Add to Home Screen</button>
+    <button class="close-popup">Close</button>
+  </div>
+</div>
+    
 <script>
 // Tabs
 const tabs = document.querySelectorAll(".tab");
@@ -486,67 +522,6 @@ document.getElementById("share-native").addEventListener("click", async () => {
         alert("Sharing not supported on this device.");
     }
 });
-<!-- PDF POPUP -->
-<div class="popup-overlay" id="pdf-popup">
-  <div class="popup">
-    <h2>Interactive Throne of Glass Reading Guide (PDF)</h2>
-
-    <p>
-      This desktop-friendly PDF includes the full reading order and tandem checklist
-      with clickable checkboxes so you can track your progress as you read.
-    </p>
-
-    <p><strong>Perfect if you want to:</strong></p>
-    <ul>
-      <li>Use the guide on desktop or tablet</li>
-      <li>Print the checklist</li>
-      <li>Keep a personal copy for reference</li>
-    </ul>
-
-    <a href="Throne-of-Glass-Reading-Guide.pdf" class="popup-button" target="_blank">
-      Download PDF
-    </a>
-
-    <button class="close-popup">Close</button>
-  </div>
-</div>
-
-<!-- OFFLINE POPUP -->
-<div class="popup-overlay" id="offline-popup">
-  <div class="popup">
-    <h2>Save This Guide to Your Phone</h2>
-
-    <p>
-      You can save this guide to your phone and open it anytime—even without internet.
-      It will appear on your home screen and open like an app.
-    </p>
-
-    <h4>How to Save</h4>
-
-    <p><strong>iPhone / iPad (Safari):</strong></p>
-    <ol>
-      <li>Tap the Share icon</li>
-      <li>Select <em>Add to Home Screen</em></li>
-      <li>Tap Add</li>
-    </ol>
-
-    <p><strong>Android (Chrome):</strong></p>
-    <ol>
-      <li>Tap the three-dot menu</li>
-      <li>Select <em>Add to Home screen</em></li>
-      <li>Confirm when prompted</li>
-    </ol>
-
-    <p>
-      Once saved, you’ll always have your Throne of Glass reading order and checklist
-      with you while you read.
-    </p>
-
-    <button class="popup-button" id="add-to-home">Add to Home Screen</button>
-    <button class="close-popup">Close</button>
-  </div>
-</div>
-
 // POPUP LOGIC
 document.querySelectorAll("[data-popup]").forEach(btn => {
     btn.addEventListener("click", () => {
