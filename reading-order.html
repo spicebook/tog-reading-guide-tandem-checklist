@@ -183,11 +183,18 @@ header {
     opacity: 0.9;
 }
 
-/* Remove ugly browser focus outlines */
+/* Remove browser outlines everywhere */
+button,
 button:focus,
-button:active {
+button:active,
+button:hover,
+a.button,
+a.button:focus,
+a.button:active,
+a.button:hover {
     outline: none;
     box-shadow: none;
+    -webkit-tap-highlight-color: transparent;
 }
 
 /* SHARE BUTTONS ROW (matches Tandem page) */
@@ -265,7 +272,18 @@ footer {
     max-width: 420px;
     width: 100%;
 }
+.popup {
+    text-align: center;
+}
 
+.popup ul,
+.popup ol {
+    text-align: left;
+    margin: 0 auto 16px;
+    max-width: 320px;
+}
+
+    
 .popup h2 {
     font-family: "EB Garamond", serif;
     margin-top: 0;
