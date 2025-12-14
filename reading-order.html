@@ -580,8 +580,9 @@ document.querySelectorAll(".close-popup").forEach(btn => {
     });
 });
 
-// PWA install prompt (Android)
-let deferredPrompt;
+let deferredPrompt = null;
+
+// Capture install prompt (Android only)
 window.addEventListener("beforeinstallprompt", (e) => {
     e.preventDefault();
     deferredPrompt = e;
@@ -590,9 +591,14 @@ window.addEventListener("beforeinstallprompt", (e) => {
 document.getElementById("add-to-home")?.addEventListener("click", async () => {
     if (deferredPrompt) {
         deferredPrompt.prompt();
+        await deferredPrompt.userChoice;
         deferredPrompt = null;
     } else {
-        alert("Follow the steps above to add this guide to your home screen.");
+        alert(
+          "To save this guide for offline use:\n\n" +
+          "• iPhone / iPad: Open in Safari → Share → Add to Home Screen\n" +
+          "• Desktop (Chrome/Brave): Use the Install option in the address bar or menu"
+        );
     }
 });
 
