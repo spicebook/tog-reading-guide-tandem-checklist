@@ -1,7 +1,7 @@
 {
   "name": "SpiceBook — TOG Tools",
   "short_name": "SpiceBook",
-  "start_url": "reading-order.html",
+  "start_url": "./",
   "scope": "./",
   "display": "standalone",
   "background_color": "#FED5D3",
